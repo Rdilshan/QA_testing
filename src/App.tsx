@@ -7,7 +7,13 @@ import Shop from "./pages/Shop";
 import ContactUS from "./pages/ContactUS";
 import Userdashboard from "./pages/Userdashboard";
 
+
+// admin 
+import AdminDashboard from "./pages/admin/Admindashboard";
+import Adminlogin from "./pages/admin/Adminlogin";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
 
   return (
@@ -24,6 +30,10 @@ function App() {
           <Route path="Shop" element={<Shop />} />
           <Route path="ContactUS" element={<ContactUS />} />
           <Route path="Userdashboard" element={<Userdashboard />} />
+          <Route path="Admin" element={< AdminDashboard/>} />
+          <Route path="Adminlog" element={< Adminlogin/>} />
+
+
 
         </Route>
       </Routes>

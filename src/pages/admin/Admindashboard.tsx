@@ -1,19 +1,16 @@
-import Navbar from "../componment/Navbar";
-import Footer from "../componment/Footer";
 
-export default function Userdashboard() {
+export default function adminDashboard() {
     return (
         <>
-            <Navbar />
             <div id="page-title-area">
                 <div className="container">
                     <div className="row">
                         <div className="col-12 text-center">
                             <div className="page-title-content">
-                                <h1>Dashboard</h1>
+                                <h1> Dashboard</h1>
                                 <ul className="breadcrumb">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="/Userdashboard" className="active">Dashboard</a></li>
+                                    <li><a href="/">Admin</a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -32,9 +29,10 @@ export default function Userdashboard() {
                                     <div className="col-lg-3">
                                         <div className="myaccount-tab-menu nav" role="tablist">
 
-                                            <a href="#orders" data-toggle="tab" className=""><i className="fa fa-cart-arrow-down"></i> Orders</a>
+                                            <a href="#orders" data-toggle="tab" className="active show"><i className="fa fa-cart-arrow-down"></i> Orders</a>
+                                            <a href="#product" data-toggle="tab" className=""><i className="fa fa-cart-arrow-down"></i> Product</a>
 
-                                            <a href="#account-info" data-toggle="tab" className="active show"><i className="fa fa-user"></i> Account Details</a>
+                                            <a href="#account-info" data-toggle="tab" className=""><i className="fa fa-user"></i> New product</a>
 
                                             <a href="login-register.html"><i className="fa fa-sign-out"></i> Logout</a>
                                         </div>
@@ -45,7 +43,7 @@ export default function Userdashboard() {
 
 
 
-                                            <div className="tab-pane fade" id="orders" role="tabpanel">
+                                            <div className="tab-pane fade  active show" id="orders" role="tabpanel">
                                                 <div className="myaccount-content">
                                                     <h3>Orders</h3>
 
@@ -89,9 +87,55 @@ export default function Userdashboard() {
                                                 </div>
                                             </div>
 
+                                            <div className="tab-pane fade" id="product" role="tabpanel">
+                                                <div className="myaccount-content">
+                                                    <h3>Product</h3>
+
+                                                    <div className="myaccount-table table-responsive text-center">
+                                                        <table className="table table-bordered">
+                                                            <thead className="thead-light">
+                                                                <tr>
+                                                                    <th>Order</th>
+                                                                    <th>Date</th>
+                                                                    <th>Status</th>
+                                                                    <th>Total</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>Aug 22, 2018</td>
+                                                                    <td>Pending</td>
+                                                                    <td>$3000</td>
+                                                                    <td>
+                                                                        <a href="/view" className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">View</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2</td>
+                                                                    <td>July 22, 2018</td>
+                                                                    <td>Approved</td>
+                                                                    <td>$200</td>
+                                                                    <td><a href="/view" className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">View</a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>3</td>
+                                                                    <td>June 12, 2017</td>
+                                                                    <td>On Hold</td>
+                                                                    <td>$990</td>
+                                                                    <td><a href="/view" className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">View</a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-                                            <div className="tab-pane fade active show" id="account-info" role="tabpanel">
+
+                                            <div className="tab-pane fade" id="account-info" role="tabpanel">
                                                 <div className="myaccount-content">
                                                     <h3>Account Details</h3>
 
@@ -168,9 +212,6 @@ export default function Userdashboard() {
                     </div>
                 </div>
             </div>
-            <Footer />
-
-
         </>
     )
 }
