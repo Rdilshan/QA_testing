@@ -19,9 +19,9 @@ export default function Navbar() {
                             <div className="main-menu-wrap">
                                 <nav id="mainmenu">
                                     <ul>
-                                        <li><a href="contact.html">Home</a></li>
-                                        <li><a href="contact.html">Shop</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/Shop">Shop</a></li>
+                                        <li><a href="/ContactUS">Contact Us</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -37,15 +37,18 @@ export default function Navbar() {
 
                                             <dl className="my-account">
                                                 <dt>My Account</dt>
-                                                <dd><a href="#">Dashboard</a></dd>
-                                                <dd><a href="#">Profile</a></dd>
+                                                <dd><a href="/Userdashboard">Dashboard</a></dd>
+                                                <dd><a href="/Userdashboard">Profile</a></dd>
                                                 <dd><a href="#">Sign</a></dd>
                                             </dl>
 
 
                                         </div>
                                     </li>
-                                    <li className="shop-cart"><a href="#"><i className="fa fa-shopping-bag"></i> <span
+                                    <li className="shop-cart"><a href="/Whishlist"><i className="fa fa-heart-o"></i> </a>
+                                        
+                                    </li>
+                                    <li className="shop-cart"><a href="/Cart"><i className="fa fa-shopping-bag"></i> <span
                                         className="count">3</span></a>
                                         
                                     </li>

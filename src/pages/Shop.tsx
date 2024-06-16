@@ -15,8 +15,8 @@ export default function Shop() {
                             <div className="page-title-content">
                                 <h1>Shop</h1>
                                 <ul className="breadcrumb">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="index.html" className="active">Shop</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/Shop" className="active">Shop</a></li>
                                 </ul>
                             </div>
                         </div>

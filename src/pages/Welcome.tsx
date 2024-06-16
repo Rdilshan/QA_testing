@@ -38,7 +38,7 @@ export default function Welcome() {
 
                                 <div className="single-carousel-wrap slide-item-2">
                                     <div className="banner-caption text-center text-lg-left">
-                                        <h4>New Collection 2017</h4>
+                                        <h4>New Collection 2024</h4>
                                         <h2>Beautiful Earrings</h2>
                                         <p>Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
                                         <a href="#" className="btn-long-arrow">Shop Now</a>
@@ -129,12 +129,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/product-1.jpg"
+                                                        <a href="/view"><img src="src/assets/img/product-1.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
+                                                        <h2><a href="/view">Crown Summit Backpack</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -143,7 +143,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star-o"></i>
                                                         </div>
                                                         <span className="price">$52.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge">New</span>
                                                     </div>
 
@@ -157,12 +157,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/product-2.jpg"
+                                                        <a href="/view"><img src="src/assets/img/product-2.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">Bruno Compete Hoodie</a></h2>
+                                                        <h2><a href="/view">Bruno Compete Hoodie</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -171,7 +171,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star-o"></i>
                                                         </div>
                                                         <span className="price">$152.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                     </div>
 
                                                     <div className="product-meta">
@@ -184,12 +184,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/product-3.jpg"
+                                                        <a href="/view"><img src="src/assets/img/product-3.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">MH01-Black</a></h2>
+                                                        <h2><a href="/view">MH01-Black</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -198,7 +198,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star"></i>
                                                         </div>
                                                         <span className="price">$43.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                     </div>
 
                                                     <div className="product-meta">
@@ -211,12 +211,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/product-4.jpg"
+                                                        <a href="/view"><img src="src/assets/img/product-4.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
+                                                        <h2><a href="/view">Chaz Kangeroo Hoodie</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -225,7 +225,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star-half"></i>
                                                         </div>
                                                         <span className="price">$83.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge sale">Sale</span>
                                                     </div>
 
@@ -247,12 +247,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/new-product-1.jpg"
+                                                        <a href="/view"><img src="src/assets/img/new-product-1.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
+                                                        <h2><a href="/view">Crown Summit Backpack</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -261,7 +261,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star-o"></i>
                                                         </div>
                                                         <span className="price">$52.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge">New</span>
                                                     </div>
 
@@ -277,12 +277,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/new-product-2.jpg"
+                                                        <a href="/view"><img src="src/assets/img/new-product-2.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">Bruno Compete Hoodie</a></h2>
+                                                        <h2><a href="/view">Bruno Compete Hoodie</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -291,7 +291,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star-o"></i>
                                                         </div>
                                                         <span className="price">$152.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge">New</span>
                                                     </div>
 
@@ -307,12 +307,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/new-product-3.jpg"
+                                                        <a href="/view"><img src="src/assets/img/new-product-3.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">MH01-Black</a></h2>
+                                                        <h2><a href="/view">MH01-Black</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -321,7 +321,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star"></i>
                                                         </div>
                                                         <span className="price">$43.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge">New</span>
                                                     </div>
 
@@ -337,12 +337,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/new-product-4.jpg"
+                                                        <a href="/view"><img src="src/assets/img/new-product-4.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
+                                                        <h2><a href="/view">Chaz Kangeroo Hoodie</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -351,7 +351,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star-half"></i>
                                                         </div>
                                                         <span className="price">$83.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge sale">Sale</span>
                                                     </div>
 
@@ -373,12 +373,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/sale-product-1.jpg"
+                                                        <a href="/view"><img src="src/assets/img/sale-product-1.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
+                                                        <h2><a href="/view">Crown Summit Backpack</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -387,7 +387,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star-o"></i>
                                                         </div>
                                                         <span className="price">$52.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge sale">Sale</span>
                                                     </div>
 
@@ -403,12 +403,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/sale-product-2.jpg"
+                                                        <a href="/view"><img src="src/assets/img/sale-product-2.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">Bruno Compete Hoodie</a></h2>
+                                                        <h2><a href="/view">Bruno Compete Hoodie</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -417,7 +417,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star-o"></i>
                                                         </div>
                                                         <span className="price">$152.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge sale">Sale</span>
                                                     </div>
 
@@ -433,12 +433,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/product-3.jpg"
+                                                        <a href="/view"><img src="src/assets/img/product-3.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">MH01-Black</a></h2>
+                                                        <h2><a href="/view">MH01-Black</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -447,7 +447,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star"></i>
                                                         </div>
                                                         <span className="price">$43.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge sale">Sale</span>
                                                     </div>
 
@@ -463,12 +463,12 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="single-product.html"><img src="src/assets/img/new-product-4.jpg"
+                                                        <a href="/view"><img src="src/assets/img/new-product-4.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
                                                     <div className="product-details">
-                                                        <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
+                                                        <h2><a href="/view">Chaz Kangeroo Hoodie</a></h2>
                                                         <div className="rating">
                                                             <i className="fa fa-star"></i>
                                                             <i className="fa fa-star"></i>
@@ -477,7 +477,7 @@ export default function Welcome() {
                                                             <i className="fa fa-star-half"></i>
                                                         </div>
                                                         <span className="price">$83.00</span>
-                                                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                                         <span className="product-bedge sale">Sale</span>
                                                     </div>
 
@@ -520,12 +520,12 @@ export default function Welcome() {
 
                                     <div className="single-product-item text-center">
                                         <figure className="product-thumb">
-                                            <a href="single-product.html"><img src="src/assets/img/new-product-1.jpg" alt="Products"
+                                            <a href="/view"><img src="src/assets/img/new-product-1.jpg" alt="Products"
                                                 className="img-fluid" /></a>
                                         </figure>
 
                                         <div className="product-details">
-                                            <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
+                                            <h2><a href="/view">Crown Summit Backpack</a></h2>
                                             <div className="rating">
                                                 <i className="fa fa-star"></i>
                                                 <i className="fa fa-star"></i>
@@ -534,7 +534,7 @@ export default function Welcome() {
                                                 <i className="fa fa-star-o"></i>
                                             </div>
                                             <span className="price">$52.00</span>
-                                            <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                             <span className="product-bedge">New</span>
                                         </div>
 
@@ -551,12 +551,12 @@ export default function Welcome() {
 
                                     <div className="single-product-item text-center">
                                         <figure className="product-thumb">
-                                            <a href="single-product.html"><img src="src/assets/img/new-product-2.jpg" alt="Products"
+                                            <a href="/view"><img src="src/assets/img/new-product-2.jpg" alt="Products"
                                                 className="img-fluid" /></a>
                                         </figure>
 
                                         <div className="product-details">
-                                            <h2><a href="single-product.html">Bruno Compete Hoodie</a></h2>
+                                            <h2><a href="/view">Bruno Compete Hoodie</a></h2>
                                             <div className="rating">
                                                 <i className="fa fa-star"></i>
                                                 <i className="fa fa-star"></i>
@@ -565,7 +565,7 @@ export default function Welcome() {
                                                 <i className="fa fa-star-o"></i>
                                             </div>
                                             <span className="price">$152.00</span>
-                                            <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                             <span className="product-bedge">New</span>
                                         </div>
 
@@ -582,12 +582,12 @@ export default function Welcome() {
 
                                     <div className="single-product-item text-center">
                                         <figure className="product-thumb">
-                                            <a href="single-product.html"><img src="src/assets/img/new-product-3.jpg" alt="Products"
+                                            <a href="/view"><img src="src/assets/img/new-product-3.jpg" alt="Products"
                                                 className="img-fluid" /></a>
                                         </figure>
 
                                         <div className="product-details">
-                                            <h2><a href="single-product.html">MH01-Black</a></h2>
+                                            <h2><a href="/view">MH01-Black</a></h2>
                                             <div className="rating">
                                                 <i className="fa fa-star"></i>
                                                 <i className="fa fa-star"></i>
@@ -596,7 +596,7 @@ export default function Welcome() {
                                                 <i className="fa fa-star"></i>
                                             </div>
                                             <span className="price">$43.00</span>
-                                            <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                             <span className="product-bedge">New</span>
                                         </div>
 
@@ -613,12 +613,12 @@ export default function Welcome() {
 
                                     <div className="single-product-item text-center">
                                         <figure className="product-thumb">
-                                            <a href="single-product.html"><img src="src/assets/img/new-product-4.jpg" alt="Products"
+                                            <a href="/view"><img src="src/assets/img/new-product-4.jpg" alt="Products"
                                                 className="img-fluid" /></a>
                                         </figure>
 
                                         <div className="product-details">
-                                            <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
+                                            <h2><a href="/view">Chaz Kangeroo Hoodie</a></h2>
                                             <div className="rating">
                                                 <i className="fa fa-star"></i>
                                                 <i className="fa fa-star"></i>
@@ -627,7 +627,7 @@ export default function Welcome() {
                                                 <i className="fa fa-star-half"></i>
                                             </div>
                                             <span className="price">$83.00</span>
-                                            <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                             <span className="product-bedge sale">Sale</span>
                                         </div>
 
@@ -644,12 +644,12 @@ export default function Welcome() {
 
                                     <div className="single-product-item text-center">
                                         <figure className="product-thumb">
-                                            <a href="single-product.html"><img src="src/assets/img/new-product-4.jpg" alt="Products"
+                                            <a href="/view"><img src="src/assets/img/new-product-4.jpg" alt="Products"
                                                 className="img-fluid" /></a>
                                         </figure>
 
                                         <div className="product-details">
-                                            <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
+                                            <h2><a href="/view">Chaz Kangeroo Hoodie</a></h2>
                                             <div className="rating">
                                                 <i className="fa fa-star"></i>
                                                 <i className="fa fa-star"></i>
@@ -658,7 +658,7 @@ export default function Welcome() {
                                                 <i className="fa fa-star-half"></i>
                                             </div>
                                             <span className="price">$83.00</span>
-                                            <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
                                             <span className="product-bedge sale">Sale</span>
                                         </div>
 

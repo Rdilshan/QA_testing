@@ -6,11 +6,11 @@ export default function Product() {
 
                 <div className="single-product-item text-center">
                     <figure className="product-thumb">
-                        <a href="single-product.html"><img src="src/assets/img/new-product-1.jpg" alt="Products" className="img-fluid" /></a>
+                        <a href="/view"><img src="src/assets/img/new-product-1.jpg" alt="Products" className="img-fluid" /></a>
                     </figure>
 
                     <div className="product-details">
-                        <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
+                        <h2><a href="/view">Crown Summit Backpack</a></h2>
                         <div className="rating">
                             <i className="fa fa-star"></i>
                             <i className="fa fa-star"></i>
@@ -20,10 +20,10 @@ export default function Product() {
                         </div>
                         <span className="price">$52.00</span>
                         
-                        <a href="single-product.html" className="btn btn-add-to-cart">+ Add to Cart</a>
-                        <a href="single-product.html" className="btn btn-add-to-cart btn-whislist">+
+                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
+                        <a href="/view" className="btn btn-add-to-cart btn-whislist">+
                             Wishlist</a>
-                        <a href="single-product.html" className="btn btn-add-to-cart btn-compare">+
+                        <a href="/view" className="btn btn-add-to-cart btn-compare">+
                             Compare</a>
                     </div>
 

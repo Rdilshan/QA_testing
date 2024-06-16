@@ -6,11 +6,28 @@ import Cart from "./pages/Cart";
 import Shop from "./pages/Shop";
 import ContactUS from "./pages/ContactUS";
 import Userdashboard from "./pages/Userdashboard";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 
   return (
     <>
-    <Userdashboard />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" >
+
+          <Route index element={<Welcome />} />
+          <Route path="LoginReg" element={<LoginReg />} />
+          <Route path="view" element={<Productview />} />
+          <Route path="Whishlist" element={<Whishlist />} />
+          <Route path="Cart" element={<Cart />} />
+          <Route path="Shop" element={<Shop />} />
+          <Route path="ContactUS" element={<ContactUS />} />
+          <Route path="Userdashboard" element={<Userdashboard />} />
+
+        </Route>
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

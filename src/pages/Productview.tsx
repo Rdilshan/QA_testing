@@ -12,8 +12,8 @@ export default function Productview() {
                         <div className="col-12 text-center">
                             <div className="page-title-content">
                                 <ul className="breadcrumb">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="shop-full-wide.html">Shop</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/Shop">Shop</a></li>
                                     <li><a href="single-product.html" className="active">Crown Summit Backpack</a></li>
                                 </ul>
                             </div>
