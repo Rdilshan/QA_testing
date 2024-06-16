@@ -30,7 +30,7 @@ export default function Navbar() {
                         <div className="col-6 col-lg-2 m-auto">
                             <div className="header-right-meta text-right">
                                 <ul>
-                                    <li><a href="#" className="modal-active"><i className="fa fa-search"></i></a></li>
+                                   
                                     <li className="settings"><a href="#"><i className="fa fa-cog"></i></a>
                                         <div className="site-settings d-block d-sm-flex">
 
