@@ -5,11 +5,12 @@ import Whishlist from "./pages/Whishlist";
 import Cart from "./pages/Cart";
 import Shop from "./pages/Shop";
 import ContactUS from "./pages/ContactUS";
+import Userdashboard from "./pages/Userdashboard";
 function App() {
 
   return (
     <>
-    <ContactUS />
+    <Userdashboard />
     </>
   )
 }
