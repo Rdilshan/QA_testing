@@ -13,7 +13,7 @@ export default function adminDashboard() {
         const fetchOrders = async () => {
             try {
                 const token = localStorage.getItem('jwtToken');
-                const response = await axios.get('http://localhost:3000/order/getall', {
+                const response = await axios.get('http://localhost:3000/product/getall', {
                     headers: {
                         'Authorization': token
                     }
