@@ -1,5 +1,47 @@
+import { useState } from "react"
+import axios from 'axios';
+
 
 export default function Adminlogin() {
+    const [password,setpassword] = useState("");
+    const [email,setemail] = useState("");
+
+
+    const handlePasswordChange = (event:any) => {
+        setpassword(event.target.value);
+    };
+
+    const handleemailChange = (event:any) => {
+        setemail(event.target.value);
+    };
+
+    const handleSubmit = async (event:any) => {
+        event.preventDefault();
+        console.log("Password entered:", password);
+        console.log("email entered:", email);
+
+        try {
+
+            const response = await axios.post('http://localhost:3000/admin/login', {
+                password: password,
+                email:email
+            });
+
+            const { token } = response.data;
+
+            localStorage.setItem('jwtToken', token);
+
+            console.log('login succesful');
+            setpassword("");
+            setemail("");
+
+        } catch (error) {
+            console.error('Error:', error);
+
+        }
+
+    };
+
     return (
         <>
 
@@ -34,13 +76,19 @@ export default function Adminlogin() {
                                 <div className="tab-content" id="login-reg-tabcontent">
                                     <div className="tab-pane fade show active" id="login" role="tabpanel">
                                         <div className="login-reg-form-wrap">
-                                            <form action="#" method="post">
+                                            <form onSubmit={handleSubmit}>
                                                 <div className="single-input-item">
-                                                    <input type="email" placeholder="Enter your Email" />
+                                                    <input type="email" placeholder="Enter your Email" 
+                                                    value={email}
+                                                    onChange={handleemailChange}
+                                                    />
                                                 </div>
 
                                                 <div className="single-input-item">
-                                                    <input type="password" placeholder="Enter your Password" />
+                                                    <input type="password" placeholder="Enter your Password" 
+                                                     value={password}
+                                                     onChange={handlePasswordChange}
+                                                     />
                                                 </div>
 
                                                 <div className="single-input-item">
@@ -57,7 +105,7 @@ export default function Adminlogin() {
                                                 </div>
 
                                                 <div className="single-input-item">
-                                                    <button className="btn-login">Login</button>
+                                                    <button className="btn-login" type="submit">Login</button>
                                                 </div>
                                             </form>
                                         </div>
