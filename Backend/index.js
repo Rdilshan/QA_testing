@@ -18,10 +18,10 @@ app.listen(port, () => {
 //routes
 const userRoutes = require('./routes/userRoute');
 const adminRoutes = require('./routes/adminRoute');
-const orderRoute = require('./routes/orderRoute');
+const productRoute = require('./routes/productRoute');
 
 
 app.use('/user', userRoutes); 
 app.use('/admin', adminRoutes); 
-app.use('/order', orderRoute); 
+app.use('/product', productRoute); 
 
