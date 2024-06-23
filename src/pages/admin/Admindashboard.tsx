@@ -64,7 +64,12 @@ export default function adminDashboard() {
 
                                             <a href="#account-info" data-toggle="tab" className=""><i className="fa fa-user"></i> New product</a>
 
-                                            <a href="login-register.html"><i className="fa fa-sign-out"></i> Logout</a>
+                                            <a href="" onClick={()=>{
+                                                localStorage.removeItem('jwtToken');
+                                                navigate('/Adminlog');
+
+                                            }}
+                                            ><i className="fa fa-sign-out"></i> Logout</a>
                                         </div>
                                     </div>
 
