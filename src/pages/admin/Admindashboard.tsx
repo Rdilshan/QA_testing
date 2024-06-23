@@ -1,5 +1,35 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function adminDashboard() {
+    const [orders, setOrders] = useState([]);
+    const navigate = useNavigate(); 
+
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const token = localStorage.getItem('jwtToken');
+                const response = await axios.get('http://localhost:3000/order/getall', {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+                setOrders(response.data);
+                console.log(orders)
+            } catch (error:any) {
+               if(error.response.data == "Invalid Token"){
+                navigate('/Adminlog');
+               }
+               console.error('Error fetching orders:', error);
+              
+            }
+        };
+
+        fetchOrders();
+    }, []);
     return (
         <>
             <div id="page-title-area">
