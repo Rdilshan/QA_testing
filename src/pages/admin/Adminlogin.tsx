@@ -1,11 +1,14 @@
 import { useState } from "react"
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function Adminlogin() {
     const [password,setpassword] = useState("");
     const [email,setemail] = useState("");
-
+    
+    const navigate = useNavigate(); 
 
     const handlePasswordChange = (event:any) => {
         setpassword(event.target.value);
@@ -34,6 +37,8 @@ export default function Adminlogin() {
             console.log('login succesful');
             setpassword("");
             setemail("");
+
+            navigate('/Admin');
 
         } catch (error) {
             console.error('Error:', error);
