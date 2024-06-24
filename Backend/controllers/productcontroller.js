@@ -1,17 +1,32 @@
 const db = require("../config/firebaseConfig");
 
 exports.saveNewData = async (req, res) => {
-  const { title, price,shortDescription,quantity,productType,description } = req.body;
+  const { title, price, shortDescription, quantity, productType, description } = req.body;
   const images = req.files.map((file) => file.path);
-
-  console.log("Received form data:", { title, price,shortDescription,quantity,productType,description, images });
-
-  // Here you can handle the data, e.g., save it to a database.
-  res.json({
-    message: "Form data received successfully",
-    data: { title, price,shortDescription,quantity,productType,description, images },
-  });
+  
+  console.log("Received form data:", { title, price, shortDescription, quantity, productType, description, images });
+  
+  try {
+    const productData = {
+      title,
+      price,
+      shortDescription,
+      quantity,
+      productType,
+      description,
+      images
+    };
+  
+    const docRef = await db.collection('product').add(productData);
+    res.status(200).send(`Document written with ID: ${docRef.id}`);
+  } catch (error) {
+    res.status(500).send(`Error adding document: ${error}`);
+  }
+  
 };
+
+
+
 exports.getAllOrders = async (req, res) => {
   try {
     const snapshot = await db.collection("order").get();
