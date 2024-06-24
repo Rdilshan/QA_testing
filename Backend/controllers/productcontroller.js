@@ -41,3 +41,19 @@ exports.getAllOrders = async (req, res) => {
     res.status(500).send(`Error retrieving documents: ${error}`);
   }
 };
+
+
+exports.getAllproducts = async (req, res) => {
+  try {
+    const snapshot = await db.collection("product").get();
+    const productset = [];
+
+    snapshot.forEach((doc) => {
+      productset.push({ id: doc.id, ...doc.data() });
+    });
+
+    res.status(200).json(productset);
+  } catch (error) {
+    res.status(500).send(`Error retrieving documents: ${error}`);
+  }
+};

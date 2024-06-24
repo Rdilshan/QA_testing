@@ -2,11 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Addnewproduct from '../../componment/Addnewproduct';
-
+import Adminproductshow from '../../componment/Adminproductshow';
 
 export default function adminDashboard() {
     const [orders, setOrders] = useState([]);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -20,12 +20,12 @@ export default function adminDashboard() {
                 });
                 setOrders(response.data);
                 console.log(orders)
-            } catch (error:any) {
-               if(error.response.data == "Invalid Token"){
-                navigate('/Adminlog');
-               }
-               console.error('Error fetching orders:', error);
-              
+            } catch (error: any) {
+                if (error.response.data == "Invalid Token") {
+                    navigate('/Adminlog');
+                }
+                console.error('Error fetching orders:', error);
+
             }
         };
 
@@ -65,7 +65,7 @@ export default function adminDashboard() {
 
                                             <a href="#account-info" data-toggle="tab" className=""><i className="fa fa-user"></i> New product</a>
 
-                                            <a href="" onClick={()=>{
+                                            <a href="" onClick={() => {
                                                 localStorage.removeItem('jwtToken');
                                                 navigate('/Adminlog');
 
@@ -124,55 +124,13 @@ export default function adminDashboard() {
                                             </div>
 
                                             <div className="tab-pane fade" id="product" role="tabpanel">
-                                                <div className="myaccount-content">
-                                                    <h3>Product</h3>
-
-                                                    <div className="myaccount-table table-responsive text-center">
-                                                        <table className="table table-bordered">
-                                                            <thead className="thead-light">
-                                                                <tr>
-                                                                    <th>Order</th>
-                                                                    <th>Date</th>
-                                                                    <th>Status</th>
-                                                                    <th>Total</th>
-                                                                    <th>Action</th>
-                                                                </tr>
-                                                            </thead>
-
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>1</td>
-                                                                    <td>Aug 22, 2018</td>
-                                                                    <td>Pending</td>
-                                                                    <td>$3000</td>
-                                                                    <td>
-                                                                        <a href="/view" className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">View</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>2</td>
-                                                                    <td>July 22, 2018</td>
-                                                                    <td>Approved</td>
-                                                                    <td>$200</td>
-                                                                    <td><a href="/view" className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">View</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>3</td>
-                                                                    <td>June 12, 2017</td>
-                                                                    <td>On Hold</td>
-                                                                    <td>$990</td>
-                                                                    <td><a href="/view" className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">View</a></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                                <Adminproductshow />
                                             </div>
 
 
 
                                             <div className="tab-pane fade" id="account-info" role="tabpanel">
-                                               <Addnewproduct/>
+                                                <Addnewproduct />
                                             </div>
 
                                         </div>
