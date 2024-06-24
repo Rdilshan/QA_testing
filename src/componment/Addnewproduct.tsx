@@ -69,6 +69,9 @@ const ProductForm: React.FC = () => {
         }
       });
       console.log(response.data);
+      navigate('/Admin', { replace: true });
+      window.location.reload();
+      
     } catch (error:any) {
       if(error.response.data == "Invalid Token"){
         navigate('/Adminlog');
