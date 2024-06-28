@@ -23,7 +23,10 @@ router.get('/getall',verifyToken, productcontroller.getAllOrders);
 router.post('/save',verifyToken,upload.array('images', 10), productcontroller.saveNewData);
 router.get('/getproducts',verifyToken, productcontroller.getAllproducts);
 
+
 router.get('/get/:id',productcontroller.getoneproduct);
+
+router.get('/products', productcontroller.getAllproducts);
 
 
 

@@ -57,8 +57,6 @@ export default function Shop() {
                                         <div className="row">
 
                                             <Product />
-                                            <Product />
-
 
                                         </div>
                                     </div>
