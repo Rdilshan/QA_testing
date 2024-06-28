@@ -1,7 +1,74 @@
 import Navbar from "../componment/Navbar";
 import Footer from "../componment/Footer";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
+type ProductType = {
+    id: any;
+    title: string;
+    price: string;
+    shortDescription: string;
+    quantity: number;
+    productType: string;
+    description: string;
+    images: string[];
+};
+
 
 export default function Whishlist() {
+
+    const [products, setProducts] = useState<ProductType[]>([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const token = localStorage.getItem('jwtTokenuser');
+                const response = await axios.get('http://localhost:3000/user/whishlistget', {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+
+
+                console.log(response.data)
+                setProducts(response.data);
+
+            } catch (error: any) {
+                if (error.response?.data === "Invalid Token") {
+                    navigate('/LoginReg');
+                }
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, [navigate]);
+
+
+
+    const handleRemoveProduct = async (productId: string) => {
+        const confirmDelete = window.confirm("Are you sure you want to remove this product from your wishlist?");
+        if (confirmDelete) {
+          try {
+            const token = localStorage.getItem('jwtTokenuser');
+            await axios.post('http://localhost:3000/user/whishlistdelete', { productId }, {
+              headers: {
+                'Authorization': token
+              }
+            });
+    
+            setProducts(products.filter(product => product.id !== productId));
+            alert('Product removed successfully!');
+          } catch (error) {
+            console.error('Error removing product:', error);
+            alert('Failed to remove product from wishlist');
+          }
+        }
+      };
+
+
     return (
         <>
             <Navbar />
@@ -13,8 +80,8 @@ export default function Whishlist() {
                             <div className="page-title-content">
                                 <h1>Wishlist</h1>
                                 <ul className="breadcrumb">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="shop-left-full-wide.html">Shop</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/shop">Shop</a></li>
                                     <li><a href="#" className="active">Wishlist</a></li>
                                 </ul>
                             </div>
@@ -43,39 +110,28 @@ export default function Whishlist() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src="src/assets/img/product-1.jpg" alt="Product" /></a></td>
-                                            <td className="pro-title"><a href="#">Zeon Zen 4 Pro</a></td>
-                                            <td className="pro-price"><span>$295.00</span></td>
-                                            <td className="pro-quantity"><span className="text-success">In Stock</span></td>
-                                            <td className="pro-subtotal"><a href="cart.html" className="btn-add-to-cart">Add to Cart</a></td>
-                                            <td className="pro-remove"><a href="#"><i className="fa fa-trash-o"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src="src/assets/img/product-2.jpg" alt="Product" /></a></td>
-                                            <td className="pro-title"><a href="#">Aquet Drone D 420</a></td>
-                                            <td className="pro-price"><span>$275.00</span></td>
-                                            <td className="pro-quantity"><span className="text-success">In Stock</span></td>
-                                            <td className="pro-subtotal"><a href="cart.html" className="btn-add-to-cart">Add to Cart</a></td>
-                                            <td className="pro-remove"><a href="#"><i className="fa fa-trash-o"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src="src/assets/img/product-3.jpg" alt="Product" /></a></td>
-                                            <td className="pro-title"><a href="#">Game Station X 22</a></td>
-                                            <td className="pro-price"><span>$295.00</span></td>
-                                            <td className="pro-quantity"><span className="text-danger">Stock Out</span></td>
-                                            <td className="pro-subtotal"><a href="cart.html" className="btn-add-to-cart disabled">Add to
-                                                Cart</a></td>
-                                            <td className="pro-remove"><a href="#"><i className="fa fa-trash-o"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src="src/assets/img/product-4.jpg" alt="Product" /></a></td>
-                                            <td className="pro-title"><a href="#">Roxxe Headphone Z 75 </a></td>
-                                            <td className="pro-price"><span>$110.00</span></td>
-                                            <td className="pro-quantity"><span className="text-success">In Stock</span></td>
-                                            <td className="pro-subtotal"><a href="cart.html" className="btn-add-to-cart">Add to Cart</a></td>
-                                            <td className="pro-remove"><a href="#"><i className="fa fa-trash-o"></i></a></td>
-                                        </tr>
+
+                                        {products.map((product, index) => (
+                                            <tr key={index}>
+                                                <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src={`http://localhost:3000/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} /></a></td>
+                                                <td className="pro-title"><a href="#">{product.title}</a></td>
+                                                <td className="pro-price"><span>Rs {product.title}</span></td>
+
+                                                {product.quantity > 0 ? (
+                                                    <td className="pro-quantity">
+                                                        <span className="text-success">In Stock</span>
+                                                    </td>
+                                                ) : (
+                                                    <td className="pro-quantity">
+                                                        <span className="text-danger">Out of Stock</span>
+                                                    </td>
+                                                )}
+
+                                                <td className="pro-subtotal"><a href="cart.html" className="btn-add-to-cart">Add to Cart</a></td>
+                                                <td className="pro-remove"><a href="#" onClick={() => handleRemoveProduct(product.id)}><i className="fa fa-trash-o"></i></a></td>
+                                            </tr>
+                                        ))}
+
                                     </tbody>
                                 </table>
                             </div>
