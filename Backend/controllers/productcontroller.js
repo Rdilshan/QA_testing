@@ -57,3 +57,16 @@ exports.getAllproducts = async (req, res) => {
     res.status(500).send(`Error retrieving documents: ${error}`);
   }
 };
+
+exports.getoneproduct = async (req, res) => {
+  try {
+    const doc = await db.collection("product").doc(req.params.id).get();
+    if (!doc.exists) {
+      res.status(404).send("Product not found");
+    } else {
+      res.status(200).json(doc.data());
+    }
+  } catch (error) {
+    res.status(500).send(`Error retrieving document: ${error}`);
+  }
+}
