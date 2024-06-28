@@ -102,7 +102,12 @@ export default function Userdashboard() {
 
                                             <a href="#account-info" data-toggle="tab" className="active show"><i className="fa fa-user"></i> Account Details</a>
 
-                                            <a href="login-register.html"><i className="fa fa-sign-out"></i> Logout</a>
+                                            <a href="" onClick={() => {
+                                                localStorage.removeItem('jwtTokenuser');
+                                                navigate('/');
+
+                                            }}
+                                            ><i className="fa fa-sign-out"></i> Logout</a>
                                         </div>
                                     </div>
 
