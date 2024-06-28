@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 type ProductType = {
+    id: any;
     title: string;
     price: string;
     shortDescription: string;
@@ -54,39 +55,29 @@ export default function Adminproductshow() {
                 <table className="table table-bordered">
                     <thead className="thead-light">
                         <tr>
-                            <th>Order</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Total</th>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Qty</th>
                             <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Aug 22, 2018</td>
-                            <td>Pending</td>
-                            <td>$3000</td>
-                            <td>
-                                <a href="/view" className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>July 22, 2018</td>
-                            <td>Approved</td>
-                            <td>$200</td>
-                            <td><a href="/view" className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>June 12, 2017</td>
-                            <td>On Hold</td>
-                            <td>$990</td>
-                            <td><a href="/view" className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">View</a></td>
-                        </tr>
-                    </tbody>
+                  {products.map((product, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{product.title}</td>
+                      <td>Rs {product.price}</td>
+                      <td>{product.quantity}</td>
+                      <td>
+                        <a href={`/view/${product.id}`} className="btn-add-to-cart" target="_blank" rel="noopener noreferrer">
+                          View
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
                 </table>
             </div>
         </div>
