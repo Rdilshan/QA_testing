@@ -137,7 +137,7 @@ export default function Productview() {
                                             <div className="product-quantity d-flex align-items-center">
                                                 <div className="quantity-field">
                                                     <label htmlFor="qty">Qty</label>
-                                                    <input type="number" id="qty" min="1" max={parseInt(product.quantity)} value="1" />
+                                                    <input type="number" id="qty" min="1" max={parseInt(product.quantity)} defaultValue="1" />
                                                 </div>
 
                                                 <a href="single-product.html" className="btn btn-add-to-cart">Add to Cart</a>
