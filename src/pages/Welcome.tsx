@@ -1,6 +1,41 @@
 import Navbar from "../componment/Navbar";
 import Footer from "../componment/Footer";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+type ProductType = {
+    id: any;
+    title: string;
+    price: string;
+    shortDescription: string;
+    quantity: string;
+    productType: string;
+    description: string;
+    images: string[];
+};
+
 export default function Welcome() {
+
+
+    const [products, setProducts] = useState<ProductType[]>([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/product/products');
+
+                const productData = response.data;
+
+                setProducts(productData);
+            } catch (error: any) {
+
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
     return (
         <>
             <Navbar />
@@ -89,7 +124,7 @@ export default function Welcome() {
                 </div>
             </section>
 
-            <section id="new-collection-area" className="p-9">
+            {/* <section id="new-collection-area" className="p-9">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 text-center">
@@ -122,10 +157,13 @@ export default function Welcome() {
                                 </ul>
 
                                 <div className="tab-content" id="myTabContent">
+
                                     <div className="tab-pane fade show active" id="feature-products" role="tabpanel"
                                         aria-labelledby="feature-products-tab">
                                         <div className="products-wrapper">
                                             <div className="products-carousel owl-carousel">
+
+
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
@@ -155,87 +193,7 @@ export default function Welcome() {
                                                     </div>
                                                 </div>
 
-                                                <div className="single-product-item text-center">
-                                                    <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/product-2.jpg"
-                                                            alt="Products" className="img-fluid" /></a>
-                                                    </figure>
-
-                                                    <div className="product-details">
-                                                        <h2><a href="/view">Bruno Compete Hoodie</a></h2>
-                                                        <div className="rating">
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star-o"></i>
-                                                        </div>
-                                                        <span className="price">$152.00</span>
-                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
-                                                    </div>
-
-                                                    <div className="product-meta">
-
-                                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                                            title="Add to Wishlist"><i className="fa fa-heart-o"></i></a>
-
-                                                    </div>
-                                                </div>
-
-                                                <div className="single-product-item text-center">
-                                                    <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/product-3.jpg"
-                                                            alt="Products" className="img-fluid" /></a>
-                                                    </figure>
-
-                                                    <div className="product-details">
-                                                        <h2><a href="/view">MH01-Black</a></h2>
-                                                        <div className="rating">
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                        </div>
-                                                        <span className="price">$43.00</span>
-                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
-                                                    </div>
-
-                                                    <div className="product-meta">
-
-                                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                                            title="Add to Wishlist"><i className="fa fa-heart-o"></i></a>
-
-                                                    </div>
-                                                </div>
-
-                                                <div className="single-product-item text-center">
-                                                    <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/product-4.jpg"
-                                                            alt="Products" className="img-fluid" /></a>
-                                                    </figure>
-
-                                                    <div className="product-details">
-                                                        <h2><a href="/view">Chaz Kangeroo Hoodie</a></h2>
-                                                        <div className="rating">
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star"></i>
-                                                            <i className="fa fa-star-half"></i>
-                                                        </div>
-                                                        <span className="price">$83.00</span>
-                                                        <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
-                                                        <span className="product-bedge sale">Sale</span>
-                                                    </div>
-
-                                                    <div className="product-meta">
-
-                                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                                            title="Add to Wishlist"><i className="fa fa-heart-o"></i></a>
-
-                                                    </div>
-                                                </div>
+                                                
 
                                             </div>
                                         </div>
@@ -492,13 +450,15 @@ export default function Welcome() {
                                             </div>
                                         </div>
                                     </div>
+
+
                                 </div>
 
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <section id="new-products-area" className="p-9">
                 <div className="container">
@@ -520,12 +480,12 @@ export default function Welcome() {
 
                                     <div className="single-product-item text-center">
                                         <figure className="product-thumb">
-                                            <a href="/view"><img src="src/assets/img/new-product-1.jpg" alt="Products"
+                                            <a href="/Shop"><img src="src/assets/img/new-product-1.jpg" alt="Products"
                                                 className="img-fluid" /></a>
                                         </figure>
 
                                         <div className="product-details">
-                                            <h2><a href="/view">Crown Summit Backpack</a></h2>
+                                            <h2><a href="/Shop">Crown Summit Backpack</a></h2>
                                             <div className="rating">
                                                 <i className="fa fa-star"></i>
                                                 <i className="fa fa-star"></i>
@@ -534,13 +494,13 @@ export default function Welcome() {
                                                 <i className="fa fa-star-o"></i>
                                             </div>
                                             <span className="price">$52.00</span>
-                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
+                                            <a href="/Shop" className="btn btn-add-to-cart">+ Add to Cart</a>
                                             <span className="product-bedge">New</span>
                                         </div>
 
                                         <div className="product-meta">
 
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
+                                            <a href="/Shop" data-toggle="tooltip" data-placement="left"
                                                 title="Add to Wishlist"><i
                                                     className="fa fa-heart-o"></i></a>
 
@@ -549,127 +509,6 @@ export default function Welcome() {
 
 
 
-                                    <div className="single-product-item text-center">
-                                        <figure className="product-thumb">
-                                            <a href="/view"><img src="src/assets/img/new-product-2.jpg" alt="Products"
-                                                className="img-fluid" /></a>
-                                        </figure>
-
-                                        <div className="product-details">
-                                            <h2><a href="/view">Bruno Compete Hoodie</a></h2>
-                                            <div className="rating">
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star-o"></i>
-                                            </div>
-                                            <span className="price">$152.00</span>
-                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span className="product-bedge">New</span>
-                                        </div>
-
-                                        <div className="product-meta">
-
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                                title="Add to Wishlist"><i
-                                                    className="fa fa-heart-o"></i></a>
-
-                                        </div>
-                                    </div>
-
-
-
-                                    <div className="single-product-item text-center">
-                                        <figure className="product-thumb">
-                                            <a href="/view"><img src="src/assets/img/new-product-3.jpg" alt="Products"
-                                                className="img-fluid" /></a>
-                                        </figure>
-
-                                        <div className="product-details">
-                                            <h2><a href="/view">MH01-Black</a></h2>
-                                            <div className="rating">
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                            </div>
-                                            <span className="price">$43.00</span>
-                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span className="product-bedge">New</span>
-                                        </div>
-
-                                        <div className="product-meta">
-
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                                title="Add to Wishlist"><i
-                                                    className="fa fa-heart-o"></i></a>
-
-                                        </div>
-                                    </div>
-
-
-
-                                    <div className="single-product-item text-center">
-                                        <figure className="product-thumb">
-                                            <a href="/view"><img src="src/assets/img/new-product-4.jpg" alt="Products"
-                                                className="img-fluid" /></a>
-                                        </figure>
-
-                                        <div className="product-details">
-                                            <h2><a href="/view">Chaz Kangeroo Hoodie</a></h2>
-                                            <div className="rating">
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star-half"></i>
-                                            </div>
-                                            <span className="price">$83.00</span>
-                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span className="product-bedge sale">Sale</span>
-                                        </div>
-
-                                        <div className="product-meta">
-
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                                title="Add to Wishlist"><i
-                                                    className="fa fa-heart-o"></i></a>
-
-                                        </div>
-                                    </div>
-
-
-
-                                    <div className="single-product-item text-center">
-                                        <figure className="product-thumb">
-                                            <a href="/view"><img src="src/assets/img/new-product-4.jpg" alt="Products"
-                                                className="img-fluid" /></a>
-                                        </figure>
-
-                                        <div className="product-details">
-                                            <h2><a href="/view">Chaz Kangeroo Hoodie</a></h2>
-                                            <div className="rating">
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star-half"></i>
-                                            </div>
-                                            <span className="price">$83.00</span>
-                                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
-                                            <span className="product-bedge sale">Sale</span>
-                                        </div>
-
-                                        <div className="product-meta">
-
-                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                                title="Add to Wishlist"><i
-                                                    className="fa fa-heart-o"></i></a>
-
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>
@@ -677,7 +516,7 @@ export default function Welcome() {
                     </div>
                 </div>
             </section>
-            
+
             <Footer />
         </>
     )
