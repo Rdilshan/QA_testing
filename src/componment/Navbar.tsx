@@ -39,7 +39,7 @@ export default function Navbar() {
                                                 <dt>My Account</dt>
                                                 <dd><a href="/Userdashboard">Dashboard</a></dd>
                                                 <dd><a href="/Userdashboard">Profile</a></dd>
-                                                <dd><a href="#">Sign</a></dd>
+                                                {/* <dd><a href="#">Sign</a></dd> */}
                                             </dl>
 
 
@@ -48,7 +48,7 @@ export default function Navbar() {
                                     <li className="shop-cart"><a href="/Whishlist"><i className="fa fa-heart-o"></i> </a>
                                         
                                     </li>
-                                    <li className="shop-cart"><a href="/Cart"><i className="fa fa-shopping-bag"></i> <span
+                                    <li className="shop-cart"><a href="/cartlist"><i className="fa fa-shopping-bag"></i> <span
                                         className="count">3</span></a>
                                         
                                     </li>
