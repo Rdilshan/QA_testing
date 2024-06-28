@@ -1,5 +1,7 @@
 const db = require("../config/firebaseConfig");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 
 exports.create = async (req, res) => {
@@ -32,3 +34,29 @@ exports.registation = async (req, res) => {
 };
 
 
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const userRef = db.collection("users");
+    const snapshot = await userRef.where("email", "==", email).get();
+    if (snapshot.empty) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+    let user = null;
+    snapshot.forEach((doc) => {
+      user = doc.data();
+      user.id = doc.id;
+    });
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    res.status(200).json({ token });
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
