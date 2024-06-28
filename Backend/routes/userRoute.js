@@ -11,6 +11,8 @@ router.post('/login', userController.login);
 
 router.get('/get',userverifyToken, userController.loginuserdetails);
 router.post('/update',userverifyToken, userController.updateuser);
+router.post('/whishlistadd',userverifyToken, userController.whishlistadd);
+router.post('/whishlistdelete',userverifyToken, userController.whishlistdelete);
 
 
 

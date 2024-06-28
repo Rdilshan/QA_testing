@@ -115,3 +115,50 @@ exports.updateuser = async (req, res) => {
     res.status(500).send(`Error updating document: ${error.message}`);
   }
 };
+
+
+exports.whishlistadd = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { productId } = req.body;
+    const userRef = db.collection("users").doc(userId);
+    const userDoc = await userRef.get();
+    if (!userDoc.exists) {
+      return res.status(404).send("User not found");
+    }
+    const user = userDoc.data();
+    const wishlist = user.wishlist || [];
+    if (!wishlist.includes(productId)) {
+      wishlist.push(productId);
+      await userRef.update({ wishlist });
+    }
+    res.status(200).send("Product added to wishlist");
+  } catch (error) {
+    console.error("Error adding product to wishlist:", error);
+    res.status(500).send(`Error adding product to wishlist: ${error.message}`);
+  }
+}
+
+
+exports.whishlistdelete = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { productId } = req.body;
+    const userRef = db.collection("users").doc(userId);
+    const userDoc = await userRef.get();
+
+    if (!userDoc.exists) {
+      return res.status(404).send("User not found");
+    }
+    const user = userDoc.data();
+    const wishlist = user.wishlist || [];
+    if (wishlist.includes(productId)) {
+      const updatedWishlist = wishlist.filter(id => id !== productId);
+      await userRef.update({ wishlist: updatedWishlist });
+    }
+    res.status(200).send("Product removed from wishlist");
+  } catch (error) {
+    console.error("Error removing product from wishlist:", error);
+    res.status(500).send(`Error removing product from wishlist: ${error.message}`);
+  }
+}
