@@ -84,7 +84,7 @@ export default function Product() {
                             </div>
                             <span className="price">Rs {product.price}</span>
 
-                            <a href="/view" className="btn btn-add-to-cart">+ Add to Cart</a>
+                            <a href={`/view/${product.id}`} className="btn btn-add-to-cart">+ Add to Cart</a>
 
                         </div>
 

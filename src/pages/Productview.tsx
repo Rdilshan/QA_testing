@@ -3,6 +3,8 @@ import Footer from "../componment/Footer";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 
 type ProductType = {
     id: any;
@@ -16,6 +18,8 @@ type ProductType = {
 };
 
 export default function Productview() {
+
+    const navigate = useNavigate();
 
     const { id } = useParams();
     const [product, setProduct] = useState<ProductType | null>(null);
@@ -41,6 +45,32 @@ export default function Productview() {
     if (!product) {
         return <div>Loading...</div>;
     }
+
+
+    const whishlistadd = async (productId: any) => {
+
+        try {
+            const token = localStorage.getItem('jwtTokenuser');
+            const response = await axios.post('http://localhost:3000/user/whishlistadd', {
+                productId
+            }, {
+                headers: {
+                    'Authorization': token
+                }
+            });
+
+
+            alert(response.data)
+
+        } catch (error: any) {
+            if (error.response?.data === "Invalid Token") {
+                navigate('/LoginReg');
+            }
+            console.error('Error fetching products:', error);
+        }
+    }
+
+
 
     return (
         <>
@@ -143,8 +173,8 @@ export default function Productview() {
                                                 <a href="single-product.html" className="btn btn-add-to-cart">Add to Cart</a>
                                             </div>
 
-                                            <div className="product-btn-group">
-                                                <a href="single-product.html" className="btn btn-add-to-cart btn-whislist">+ Add to
+                                            <div className="product-btn-group" onClick={() => whishlistadd(id)}>
+                                                <a href="#"  className="btn btn-add-to-cart btn-whislist">+ Add to
                                                     Wishlist</a>
 
                                             </div>

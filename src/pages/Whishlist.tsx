@@ -129,7 +129,7 @@ export default function Whishlist() {
                                                     </td>
                                                 )}
 
-                                                <td className="pro-subtotal"><a href="cart.html" className="btn-add-to-cart">Add to Cart</a></td>
+                                                <td className="pro-subtotal"><a href={`/view/${product.id}`} className="btn-add-to-cart">Add to Cart</a></td>
                                                 <td className="pro-remove"><a href="#" onClick={() => handleRemoveProduct(product.id)}><i className="fa fa-trash-o"></i></a></td>
                                             </tr>
                                         ))}
