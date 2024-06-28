@@ -76,7 +76,7 @@ export default function LoginReg() {
             // Handle successful login, e.g., store token in localStorage
             const { token } = response.data;
 
-            localStorage.setItem('jwtToken', token);
+            localStorage.setItem('jwtTokenuser', token);
             window.location.href = '/';
 
           } else {

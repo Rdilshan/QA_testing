@@ -1,7 +1,73 @@
 import Navbar from "../componment/Navbar";
 import Footer from "../componment/Footer";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Userdashboard() {
+    const navigate = useNavigate();
+    const [name, setname] = useState("");
+    const [email, setemail] = useState("");
+    const [currentPwd, setCurrentPwd] = useState('');
+    const [newPwd, setNewPwd] = useState('');
+    const [confirmPwd, setConfirmPwd] = useState('');
+
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const token = localStorage.getItem('jwtTokenuser');
+                const response = await axios.get('http://localhost:3000/user/get', {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+                // console.log(response.data)
+                setname(response.data.name)
+                setemail(response.data.email)
+            } catch (error: any) {
+                if (error.response.data == "Invalid Token") {
+                    navigate('/LoginReg');
+                }
+                console.error('Error fetching orders:', error);
+
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+
+        if (newPwd !== confirmPwd) {
+            alert("New password and confirm password do not match");
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem('jwtTokenuser');
+            const response = await axios.post('http://localhost:3000/user/update', {
+                name,
+                email,
+                currentPwd,
+                newPwd
+            }, {
+                headers: {
+                    'Authorization': token
+                }
+            });
+            setCurrentPwd("")
+            setNewPwd("")
+            setConfirmPwd("")
+
+            alert('Profile updated successfully');
+        } catch (error: any) {
+            alert(error.response?.data?.message || 'An error occurred');
+        }
+    };
+
+
     return (
         <>
             <Navbar />
@@ -96,62 +162,78 @@ export default function Userdashboard() {
                                                     <h3>Account Details</h3>
 
                                                     <div className="account-details-form">
-                                                        <form action="#">
+                                                        <form onSubmit={handleSubmit}>
                                                             <div className="row">
-                                                                <div className="col-lg-6">
+                                                                <div className="col-lg-12">
                                                                     <div className="single-input-item">
-                                                                        <label htmlFor="first-name" className="required">First Name</label>
-                                                                        <input type="text" id="first-name" placeholder="First Name" />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className="col-lg-6">
-                                                                    <div className="single-input-item">
-                                                                        <label htmlFor="last-name" className="required">Last Name</label>
-                                                                        <input type="text" id="last-name" placeholder="Last Name" />
+                                                                        <label htmlFor="first-name" className="required">Full Name</label>
+                                                                        <input
+                                                                            type="text"
+                                                                            id="first-name"
+                                                                            placeholder="First Name"
+                                                                            defaultValue={name}
+                                                                            onChange={(e) => setname(e.target.value)}
+                                                                        />
                                                                     </div>
                                                                 </div>
                                                             </div>
 
                                                             <div className="single-input-item">
-                                                                <label htmlFor="display-name" className="required">Display Name</label>
-                                                                <input type="text" id="display-name" placeholder="Display Name" />
-                                                            </div>
-
-                                                            <div className="single-input-item">
-                                                                <label htmlFor="email" className="required">Email Addres</label>
-                                                                <input type="email" id="email" placeholder="Email Address" />
+                                                                <label htmlFor="email" className="required">Email Address</label>
+                                                                <input
+                                                                    type="email"
+                                                                    id="email"
+                                                                    placeholder="Email Address"
+                                                                    defaultValue={email}
+                                                                    onChange={(e) => setemail(e.target.value)}
+                                                                    readOnly
+                                                                />
                                                             </div>
 
                                                             <fieldset>
                                                                 <legend>Password change</legend>
                                                                 <div className="single-input-item">
-                                                                    <label htmlFor="current-pwd" className="required">Current
-                                                                        Password</label>
-                                                                    <input type="password" id="current-pwd" placeholder="Current Password" />
+                                                                    <label htmlFor="current-pwd" className="required">Current Password</label>
+                                                                    <input
+                                                                        type="password"
+                                                                        id="current-pwd"
+                                                                        placeholder="Current Password"
+                                                                        defaultValue={currentPwd}
+                                                                        onChange={(e) => setCurrentPwd(e.target.value)}
+                                                                    />
                                                                 </div>
 
                                                                 <div className="row">
                                                                     <div className="col-lg-6">
                                                                         <div className="single-input-item">
-                                                                            <label htmlFor="new-pwd" className="required">New
-                                                                                Password</label>
-                                                                            <input type="password" id="new-pwd" placeholder="New Password" />
+                                                                            <label htmlFor="new-pwd" className="required">New Password</label>
+                                                                            <input
+                                                                                type="password"
+                                                                                id="new-pwd"
+                                                                                placeholder="New Password"
+                                                                                defaultValue={newPwd}
+                                                                                onChange={(e) => setNewPwd(e.target.value)}
+                                                                            />
                                                                         </div>
                                                                     </div>
 
                                                                     <div className="col-lg-6">
                                                                         <div className="single-input-item">
-                                                                            <label htmlFor="confirm-pwd" className="required">Confirm
-                                                                                Password</label>
-                                                                            <input type="password" id="confirm-pwd" placeholder="Confirm Password" />
+                                                                            <label htmlFor="confirm-pwd" className="required">Confirm Password</label>
+                                                                            <input
+                                                                                type="password"
+                                                                                id="confirm-pwd"
+                                                                                placeholder="Confirm Password"
+                                                                                defaultValue={confirmPwd}
+                                                                                onChange={(e) => setConfirmPwd(e.target.value)}
+                                                                            />
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </fieldset>
 
                                                             <div className="single-input-item">
-                                                                <button className="btn-login btn-add-to-cart">Save Changes</button>
+                                                                <button type="submit" className="btn-login btn-add-to-cart">Save Changes</button>
                                                             </div>
                                                         </form>
                                                     </div>
