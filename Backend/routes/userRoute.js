@@ -13,6 +13,8 @@ router.get('/get',userverifyToken, userController.loginuserdetails);
 router.post('/update',userverifyToken, userController.updateuser);
 router.post('/whishlistadd',userverifyToken, userController.whishlistadd);
 router.post('/whishlistdelete',userverifyToken, userController.whishlistdelete);
+router.get('/whishlistget',userverifyToken, userController.whishlistget);
+
 
 
 
