@@ -156,7 +156,9 @@ exports.whishlistdelete = async (req, res) => {
       const updatedWishlist = wishlist.filter(id => id !== productId);
       await userRef.update({ wishlist: updatedWishlist });
     }
-    res.status(200).send("Product removed from wishlist");
+    res.status(200).send(productId);
+
+    
   } catch (error) {
     console.error("Error removing product from wishlist:", error);
     res.status(500).send(`Error removing product from wishlist: ${error.message}`);
@@ -169,24 +171,29 @@ exports.whishlistget = async (req, res) => {
     const userId = req.user.id;
     const userRef = db.collection("users").doc(userId);
     const userDoc = await userRef.get();
+
     if (!userDoc.exists) {
       return res.status(404).send("User not found");
     }
+
     const user = userDoc.data();
     const wishlist = user.wishlist || [];
+    
     const products = await Promise.all(wishlist.map(async (productId) => {
       const productRef = db.collection("product").doc(productId);
       const productDoc = await productRef.get();
+
       if (productDoc.exists) {
-        return productDoc.data();
+        return { id: productId, ...productDoc.data() };
       } else {
         return null;
       }
     }));
+
     const filteredProducts = products.filter(Boolean);
     res.status(200).json(filteredProducts);
   } catch (error) {
     console.error("Error retrieving wishlist products:", error);
     res.status(500).send(`Error retrieving wishlist products: ${error.message}`);
   }
-} 
+}

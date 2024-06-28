@@ -49,15 +49,17 @@ export default function Whishlist() {
 
 
     const handleRemoveProduct = async (productId: string) => {
+        console.log(productId)
         const confirmDelete = window.confirm("Are you sure you want to remove this product from your wishlist?");
         if (confirmDelete) {
           try {
             const token = localStorage.getItem('jwtTokenuser');
-            await axios.post('http://localhost:3000/user/whishlistdelete', { productId }, {
+            const response = await axios.post('http://localhost:3000/user/whishlistdelete', { productId }, {
               headers: {
                 'Authorization': token
               }
             });
+            console.log(response.data)
     
             setProducts(products.filter(product => product.id !== productId));
             alert('Product removed successfully!');
@@ -115,7 +117,7 @@ export default function Whishlist() {
                                             <tr key={index}>
                                                 <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src={`http://localhost:3000/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} /></a></td>
                                                 <td className="pro-title"><a href="#">{product.title}</a></td>
-                                                <td className="pro-price"><span>Rs {product.title}</span></td>
+                                                <td className="pro-price"><span>Rs {product.price}</span></td>
 
                                                 {product.quantity > 0 ? (
                                                     <td className="pro-quantity">
