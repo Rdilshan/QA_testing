@@ -139,13 +139,25 @@ exports.countorder = async (req, res) => {
     const userId = req.user.id;
     const userRef = db.collection("users").doc(userId);
     const userDoc = await userRef.get();
+
     if (!userDoc.exists) {
       return res.status(404).send("User not found.");
     }
-    const ordersSnapshot = await db
-      .collection("order")
-      .where("userId", "==", userId)
-      .get();
+
+    const ordersRef = db.collection("order");
+    let query = ordersRef.where("userId", "==", userId);
+
+    const paymentStatusField = await ordersRef.get().then((snapshot) => {
+      return snapshot.docs[0].data().hasOwnProperty("paymentStatus");
+    });
+
+    if (paymentStatusField) {
+      query = query.where("paymentStatus", "==", false);
+    } else {
+      console.warn("paymentStatus field does not exist in documents.");
+    }
+
+    const ordersSnapshot = await query.get();
     const count = ordersSnapshot.size;
     res.status(200).json({ count });
   } catch (error) {

@@ -1,6 +1,34 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 export default function Navbar() {
+
+    const[ordercount, setordercount] = useState<number>(0);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const token = localStorage.getItem('jwtTokenuser');
+                const response = await axios.get('http://localhost:3000/order/count', {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+
+                setordercount(response.data.count);
+
+            } catch (error: any) {
+                if (error.response?.data === "Invalid Token") {
+                    setordercount(0);
+                }
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
     return (
         <>
             <header id="header-area">
@@ -30,7 +58,7 @@ export default function Navbar() {
                         <div className="col-6 col-lg-2 m-auto">
                             <div className="header-right-meta text-right">
                                 <ul>
-                                   
+
                                     <li className="settings"><a href="#"><i className="fa fa-cog"></i></a>
                                         <div className="site-settings d-block d-sm-flex">
 
@@ -46,11 +74,11 @@ export default function Navbar() {
                                         </div>
                                     </li>
                                     <li className="shop-cart"><a href="/Whishlist"><i className="fa fa-heart-o"></i> </a>
-                                        
+
                                     </li>
                                     <li className="shop-cart"><a href="/cartlist"><i className="fa fa-shopping-bag"></i> <span
-                                        className="count">3</span></a>
-                                        
+                                        className="count">{ordercount}</span></a>
+
                                     </li>
                                 </ul>
                             </div>
@@ -62,3 +90,4 @@ export default function Navbar() {
         </>
     )
 }
+
