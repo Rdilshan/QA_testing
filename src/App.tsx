@@ -14,6 +14,7 @@ import Adminlogin from "./pages/admin/Adminlogin";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cartlist from "./pages/Cartlist";
+import Adminorderdetails from "./pages/admin/Adminorderdetails";
 
 function App() {
 
@@ -34,8 +35,7 @@ function App() {
           <Route path="Admin" element={< AdminDashboard/>} />
           <Route path="Adminlog" element={< Adminlogin/>} />
           <Route path="cartlist" element={< Cartlist/>} />
-
-
+          <Route path="adminorder" element={< Adminorderdetails/>} />
 
 
         </Route>
