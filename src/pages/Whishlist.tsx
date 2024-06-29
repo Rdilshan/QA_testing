@@ -52,23 +52,23 @@ export default function Whishlist() {
         console.log(productId)
         const confirmDelete = window.confirm("Are you sure you want to remove this product from your wishlist?");
         if (confirmDelete) {
-          try {
-            const token = localStorage.getItem('jwtTokenuser');
-            const response = await axios.post('http://localhost:3000/user/whishlistdelete', { productId }, {
-              headers: {
-                'Authorization': token
-              }
-            });
-            console.log(response.data)
-    
-            setProducts(products.filter(product => product.id !== productId));
-            alert('Product removed successfully!');
-          } catch (error) {
-            console.error('Error removing product:', error);
-            alert('Failed to remove product from wishlist');
-          }
+            try {
+                const token = localStorage.getItem('jwtTokenuser');
+                const response = await axios.post('http://localhost:3000/user/whishlistdelete', { productId }, {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+                console.log(response.data)
+
+                setProducts(products.filter(product => product.id !== productId));
+                alert('Product removed successfully!');
+            } catch (error) {
+                console.error('Error removing product:', error);
+                alert('Failed to remove product from wishlist');
+            }
         }
-      };
+    };
 
 
     return (
@@ -112,29 +112,36 @@ export default function Whishlist() {
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        {products.map((product, index) => (
-                                            <tr key={index}>
-                                                <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src={`http://localhost:3000/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} /></a></td>
-                                                <td className="pro-title"><a href="#">{product.title}</a></td>
-                                                <td className="pro-price"><span>Rs {product.price}</span></td>
-
-                                                {product.quantity > 0 ? (
-                                                    <td className="pro-quantity">
-                                                        <span className="text-success">In Stock</span>
+                                        {products.length > 0 ? (
+                                            products.map((product, index) => (
+                                                <tr key={index}>
+                                                    <td className="pro-thumbnail">
+                                                        <a href="#"><img className="img-fluid" src={`http://localhost:3000/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} /></a>
                                                     </td>
-                                                ) : (
-                                                    <td className="pro-quantity">
-                                                        <span className="text-danger">Out of Stock</span>
-                                                    </td>
-                                                )}
+                                                    <td className="pro-title"><a href="#">{product.title}</a></td>
+                                                    <td className="pro-price"><span>Rs {product.price}</span></td>
 
-                                                <td className="pro-subtotal"><a href={`/view/${product.id}`} className="btn-add-to-cart">Add to Cart</a></td>
-                                                <td className="pro-remove"><a href="#" onClick={() => handleRemoveProduct(product.id)}><i className="fa fa-trash-o"></i></a></td>
+                                                    {product.quantity > 0 ? (
+                                                        <td className="pro-quantity">
+                                                            <span className="text-success">In Stock</span>
+                                                        </td>
+                                                    ) : (
+                                                        <td className="pro-quantity">
+                                                            <span className="text-danger">Out of Stock</span>
+                                                        </td>
+                                                    )}
+
+                                                    <td className="pro-subtotal"><a href={`/view/${product.id}`} className="btn-add-to-cart">Add to Cart</a></td>
+                                                    <td className="pro-remove"><a href="#" onClick={() => handleRemoveProduct(product.id)}><i className="fa fa-trash-o"></i></a></td>
+                                                </tr>
+                                            ))
+                                        ) : (
+                                            <tr>
+                                                <td colSpan={6} className="text-center">No products available</td>
                                             </tr>
-                                        ))}
-
+                                        )}
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

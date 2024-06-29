@@ -129,25 +129,40 @@ export default function Cartlist() {
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        {products.map((product, index) => (
-                                            <tr key={index}>
-                                                <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src={`http://localhost:3000/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} /></a></td>
-                                                <td className="pro-title"><a href="#">{product.title}</a></td>
-                                                <td className="pro-price"><span>Rs {product.price}</span></td>
-
-
-                                                <td className="pro-quantity">
-                                                    <span className="text-success">
-                                                        <input type="number" id="qty" min="1" max={100} defaultValue={product.qty} onChange={(e) => Updateqty(product.orderID, parseInt(e.target.value))} />
-                                                    </span>
-                                                </td>
-
-                                                <td className="pro-remove"><a href="#" onClick={() => handleRemoveProduct(product.orderID)}><i className="fa fa-trash-o"></i></a></td>
+                                        {products.length > 0 ? (
+                                            products.map((product, index) => (
+                                                <tr key={index}>
+                                                    <td className="pro-thumbnail">
+                                                        <a href="#"><img className="img-fluid" src={`http://localhost:3000/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} /></a>
+                                                    </td>
+                                                    <td className="pro-title"><a href="#">{product.title}</a></td>
+                                                    <td className="pro-price"><span>Rs {product.price}</span></td>
+                                                    <td className="pro-quantity">
+                                                        <span className="text-success">
+                                                            <input
+                                                                type="number"
+                                                                id="qty"
+                                                                min="1"
+                                                                max="100"
+                                                                defaultValue={product.qty}
+                                                                onChange={(e) => Updateqty(product.orderID, parseInt(e.target.value))}
+                                                            />
+                                                        </span>
+                                                    </td>
+                                                    <td className="pro-remove">
+                                                        <a href="#" onClick={() => handleRemoveProduct(product.orderID)}>
+                                                            <i className="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        ) : (
+                                            <tr>
+                                                <td colSpan={5} className="text-center">No products available</td>
                                             </tr>
-                                        ))}
-
+                                        )}
                                     </tbody>
+
                                 </table>
 
 
