@@ -1,6 +1,9 @@
 const express = require('express');
 const userverifyToken = require("../middlware/userlogincheck");
 const ordercontroller = require("../controllers/ordercontroller")
+const verifyToken = require("../middlware/adminchecking");
+
+
 
 const router = express.Router();
 
@@ -12,6 +15,10 @@ router.post('/update',userverifyToken, ordercontroller.updateCartQty);
 router.post('/delete',userverifyToken, ordercontroller.deleteOrder);
 
 router.post('/place',userverifyToken, ordercontroller.orderpaymentdon);
+router.get('/placeitem',userverifyToken, ordercontroller.paymentdone);
+router.get('/adminplaceitem',verifyToken, ordercontroller.paymentdoneadmin);
+
+
 
 
 

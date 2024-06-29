@@ -239,7 +239,7 @@ exports.paymentdone=async(req,res)=>{
 
     const cartList = ordersSnapshot.docs.map((doc) => {
       const data = doc.data();
-      return { productId: data.productId, qty: data.qty, orderID: doc.id };
+      return { productId: data.productId, qty: data.qty, orderID: doc.id,orderstate:data.orderstate,paymentAT:data.paymentAT };
     });
 
     if (cartList.length === 0) {
@@ -247,12 +247,51 @@ exports.paymentdone=async(req,res)=>{
     }
 
     const products = await Promise.all(
-      cartList.map(async ({ productId, qty, orderID }) => {
+      cartList.map(async ({ productId, qty, orderID,orderstate,paymentAT }) => {
         const productRef = db.collection("product").doc(productId);
         const productDoc = await productRef.get();
 
         if (productDoc.exists) {
-          return { id: productId, qty, orderID, ...productDoc.data() };
+          return { id: productId, qty, orderID,orderstate,paymentAT, ...productDoc.data() };
+        } else {
+          return null;
+        }
+      })
+    );
+
+    const filteredProducts = products.filter(Boolean);
+    res.status(200).json(filteredProducts);
+  } catch (error) {
+    console.error("Error retrieving cart list:", error);
+    res.status(500).send(`Error retrieving cart list: ${error.message}`);
+  }
+}
+
+exports.paymentdoneadmin =async(req,res)=>{
+  try {
+
+
+    const ordersSnapshot = await db
+      .collection("order")
+      .where("paymentStatus", "==", true)
+      .get();
+
+    const cartList = ordersSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return { productId: data.productId, qty: data.qty, orderID: doc.id,orderstate:data.orderstate,paymentAT:data.paymentAT };
+    });
+
+    if (cartList.length === 0) {
+      return res.status(200).json([]);
+    }
+
+    const products = await Promise.all(
+      cartList.map(async ({ productId, qty, orderID,orderstate,paymentAT }) => {
+        const productRef = db.collection("product").doc(productId);
+        const productDoc = await productRef.get();
+
+        if (productDoc.exists) {
+          return { id: productId, qty, orderID,orderstate,paymentAT, ...productDoc.data() };
         } else {
           return null;
         }

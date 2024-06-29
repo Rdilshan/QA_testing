@@ -7,6 +7,8 @@ import Adminproductshow from '../../componment/Adminproductshow';
 export default function adminDashboard() {
     const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
+    const [orderlist, setorderlist] = useState([]);
+
 
 
     useEffect(() => {
@@ -19,7 +21,7 @@ export default function adminDashboard() {
                     }
                 });
                 setOrders(response.data);
-                console.log(orders)
+                // console.log(orders)
             } catch (error: any) {
                 if (error.response.data == "Invalid Token") {
                     navigate('/Adminlog');
@@ -31,6 +33,33 @@ export default function adminDashboard() {
 
         fetchOrders();
     }, []);
+
+
+    useEffect(() => {
+        const fechpaymentdone = async () => {
+            try {
+                const token = localStorage.getItem('jwtToken');
+                const response = await axios.get('http://localhost:3000/order/adminplaceitem', {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+                console.log(response.data)
+                setorderlist(response.data)
+
+            } catch (error: any) {
+                if (error.response.data == "Invalid Token") {
+                    navigate('/Adminlog');
+                }
+                console.error('Error fetching orders:', error);
+
+            }
+        };
+
+        fechpaymentdone();
+    }, []);
+
+
     return (
         <>
             <div id="page-title-area">
@@ -87,7 +116,7 @@ export default function adminDashboard() {
                                                         <table className="table table-bordered">
                                                             <thead className="thead-light">
                                                                 <tr>
-                                                                    <th>Order</th>
+                                                                    <th>Order Number</th>
                                                                     <th>Date</th>
                                                                     <th>Status</th>
                                                                     <th>Total</th>
@@ -96,27 +125,21 @@ export default function adminDashboard() {
                                                             </thead>
 
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>1</td>
-                                                                    <td>Aug 22, 2018</td>
-                                                                    <td>Pending</td>
-                                                                    <td>$3000</td>
-                                                                    <td><a href="cart.html" className="btn-add-to-cart">View</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>2</td>
-                                                                    <td>July 22, 2018</td>
-                                                                    <td>Approved</td>
-                                                                    <td>$200</td>
-                                                                    <td><a href="cart.html" className="btn-add-to-cart">View</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>3</td>
-                                                                    <td>June 12, 2017</td>
-                                                                    <td>On Hold</td>
-                                                                    <td>$990</td>
-                                                                    <td><a href="cart.html" className="btn-add-to-cart">View</a></td>
-                                                                </tr>
+                                                                {orderlist.length > 0 ? (
+                                                                    orderlist.map((order: any, index) => (
+                                                                        <tr key={index}>
+                                                                            <td>{order.orderID}</td>
+                                                                            <td>{convertToNormalDate(order.paymentAT)}</td>
+                                                                            <td>{order.orderstate}</td>
+                                                                            <td>Rs {order.price * order.qty}</td>
+                                                                            <td><a href={`/view/${order.id}`} className="btn-add-to-cart">View</a></td>
+                                                                        </tr>
+                                                                    ))
+                                                                ) : (
+                                                                    <tr>
+                                                                        <td colSpan={5} style={{ textAlign: 'center' }}>No orders available</td>
+                                                                    </tr>
+                                                                )}
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -145,4 +168,21 @@ export default function adminDashboard() {
             </div>
         </>
     )
+}
+
+
+function convertToNormalDate(isoDate: string | number | Date) {
+    const date = new Date(isoDate);
+
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+    };
+
+    return date.toLocaleDateString('en-US', options);
 }
