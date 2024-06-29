@@ -23,6 +23,7 @@ export default function Productview() {
 
     const { id } = useParams();
     const [product, setProduct] = useState<ProductType | null>(null);
+    const [qty, setQuantity] = useState<number>(1);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -70,7 +71,29 @@ export default function Productview() {
         }
     }
 
+    const addtocart = async (productId: any) => {
 
+        try {
+            const token = localStorage.getItem('jwtTokenuser');
+            const response = await axios.post('http://localhost:3000/order/create',
+                {
+                    productId,
+                    qty
+                }, {
+                headers: {
+                    'Authorization': token
+                }
+            });
+            console.log(response.data)
+            alert(response.data)
+        } catch (error: any) {
+            if (error.response?.data === "Invalid Token") {
+                navigate('/LoginReg');
+            }
+            console.error('Error fetching products:', error);
+        }
+
+    }
 
     return (
         <>
@@ -104,7 +127,7 @@ export default function Productview() {
                                     <div className="col-lg-5">
                                         <div className="product-thumbnail-wrap">
                                             <div className="product-thumb-carousel owl-carousel owl-loaded owl-drag">
-                                               
+
                                                 <div className="owl-stage-outer">
                                                     <div className="owl-stage" style={{ transform: 'translate3d(-1338px, 0px, 0px)', transition: 'all 0s ease 0s', width: '4907px' }}>
                                                         {product.images.map((image, index) => (
@@ -167,14 +190,14 @@ export default function Productview() {
                                             <div className="product-quantity d-flex align-items-center">
                                                 <div className="quantity-field">
                                                     <label htmlFor="qty">Qty</label>
-                                                    <input type="number" id="qty" min="1" max={parseInt(product.quantity)} defaultValue="1" />
+                                                    <input type="number" id="qty" min="1" max={parseInt(product.quantity)} defaultValue={qty} onChange={(e) => setQuantity(parseInt(e.target.value))} />
                                                 </div>
 
-                                                <a href="single-product.html" className="btn btn-add-to-cart">Add to Cart</a>
+                                                <a href="#" onClick={() => addtocart(id)} className="btn btn-add-to-cart">Add to Cart</a>
                                             </div>
 
                                             <div className="product-btn-group" onClick={() => whishlistadd(id)}>
-                                                <a href="#"  className="btn btn-add-to-cart btn-whislist">+ Add to
+                                                <a href="#" className="btn btn-add-to-cart btn-whislist">+ Add to
                                                     Wishlist</a>
 
                                             </div>
