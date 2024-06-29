@@ -1,8 +1,94 @@
 
+import { useEffect, useState } from 'react';
 import Footer from '../componment/Footer'
 import Navbar from '../componment/Navbar'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
+
+type ProductType = {
+    id: any;
+    orderID: any;
+    qty: number;
+    title: string;
+    price: string;
+    shortDescription: string;
+    quantity: number;
+    productType: string;
+    description: string;
+    images: string[];
+};
+
+
 
 export default function Cartlist() {
+
+    const [products, setProducts] = useState<ProductType[]>([]);
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const token = localStorage.getItem('jwtTokenuser');
+                const response = await axios.get('http://localhost:3000/order/get', {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+
+
+                // console.log(response.data)
+                setProducts(response.data);
+
+            } catch (error: any) {
+                if (error.response?.data === "Invalid Token") {
+                    navigate('/LoginReg');
+                }
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, [navigate]);
+
+    const handleRemoveProduct = async (orderId: string) => {
+        console.log(orderId)
+        const confirmDelete = window.confirm("Are you sure you want to remove this product from your wishlist?");
+        if (confirmDelete) {
+            try {
+                const token = localStorage.getItem('jwtTokenuser');
+                const response = await axios.post('http://localhost:3000/order/delete', { orderId }, {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+                console.log(response.data)
+
+                setProducts(products.filter(product => product.orderID !== orderId));
+                alert('Product removed successfully!');
+            } catch (error) {
+                console.error('Error removing product:', error);
+                alert('Failed to remove product from wishlist');
+            }
+        }
+    };
+
+    const Updateqty = async (orderId: string, qty: number) => {
+        try {
+            const token = localStorage.getItem('jwtTokenuser');
+            const response = await axios.post('http://localhost:3000/order/update', { orderId, qty }, {
+                headers: {
+                    'Authorization': token
+                }
+            });
+            console.log(response.data)
+        } catch (error) {
+            console.error('Error updating quantity:', error);
+        }
+    };
+
     return (
         <>
             <Navbar />
@@ -44,28 +130,29 @@ export default function Cartlist() {
                                     </thead>
                                     <tbody>
 
+                                        {products.map((product, index) => (
+                                            <tr key={index}>
+                                                <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src={`http://localhost:3000/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} /></a></td>
+                                                <td className="pro-title"><a href="#">{product.title}</a></td>
+                                                <td className="pro-price"><span>Rs {product.price}</span></td>
 
-                                        <tr >
-                                            <td className="pro-thumbnail"><a href="#"><img className="img-fluid" src={`http://localhost:3000/uploads/1719239409124.jpg`} alt={`Product Thumbnail`} /></a></td>
-                                            <td className="pro-title"><a href="#">sdfgsd</a></td>
-                                            <td className="pro-price"><span>Rs 100</span></td>
 
+                                                <td className="pro-quantity">
+                                                    <span className="text-success">
+                                                        <input type="number" id="qty" min="1" max={100} defaultValue={product.qty} onChange={(e) => Updateqty(product.orderID, parseInt(e.target.value))} />
+                                                    </span>
+                                                </td>
 
-                                            <td className="pro-quantity">
-                                                <span className="text-success">
-                                                <input type="number" id="qty" min="1" max={100} defaultValue="1" />
-                                                </span>
-                                            </td>
-
-                                            <td className="pro-remove"><a href="#" ><i className="fa fa-trash-o"></i></a></td>
-                                        </tr>
+                                                <td className="pro-remove"><a href="#" onClick={() => handleRemoveProduct(product.orderID)}><i className="fa fa-trash-o"></i></a></td>
+                                            </tr>
+                                        ))}
 
                                     </tbody>
                                 </table>
 
-                               
+
                             </div>
-                           
+
                         </div>
                         <a href="/cart" className="btn-add-to-cart mt-4"> Place Order</a>
                     </div>

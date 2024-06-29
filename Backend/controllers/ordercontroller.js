@@ -45,19 +45,23 @@ exports.addtocartlistget = async (req, res) => {
       .collection("order")
       .where("userId", "==", userId)
       .get();
-    const cartList = ordersSnapshot.docs.map((doc) => doc.data().productId);
+
+    const cartList = ordersSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return { productId: data.productId, qty: data.qty,orderID:doc.id };
+    });
 
     if (cartList.length === 0) {
       return res.status(200).json([]);
     }
 
     const products = await Promise.all(
-      cartList.map(async (productId) => {
+      cartList.map(async ({ productId, qty,orderID }) => {
         const productRef = db.collection("product").doc(productId);
         const productDoc = await productRef.get();
 
         if (productDoc.exists) {
-          return { id: productId, ...productDoc.data() };
+          return { id: productId, qty,orderID, ...productDoc.data() };
         } else {
           return null;
         }
