@@ -20,6 +20,7 @@ exports.orderplace = async (req, res) => {
       userId,
       qty,
       productId,
+      paymentStatus:false,
       createdAt: new Date().toISOString(),
     };
 
@@ -44,6 +45,7 @@ exports.addtocartlistget = async (req, res) => {
     const ordersSnapshot = await db
       .collection("order")
       .where("userId", "==", userId)
+      .where("paymentStatus", "==", false)
       .get();
 
     const cartList = ordersSnapshot.docs.map((doc) => {
@@ -75,6 +77,7 @@ exports.addtocartlistget = async (req, res) => {
     res.status(500).send(`Error retrieving cart list: ${error.message}`);
   }
 };
+
 
 exports.updateCartQty = async (req, res) => {
   try {
@@ -145,20 +148,11 @@ exports.countorder = async (req, res) => {
     }
 
     const ordersRef = db.collection("order");
-    let query = ordersRef.where("userId", "==", userId);
-
-    const paymentStatusField = await ordersRef.get().then((snapshot) => {
-      return snapshot.docs[0].data().hasOwnProperty("paymentStatus");
-    });
-
-    if (paymentStatusField) {
-      query = query.where("paymentStatus", "==", false);
-    } else {
-      console.warn("paymentStatus field does not exist in documents.");
-    }
+    const query = ordersRef.where("userId", "==", userId).where("paymentStatus", "==", false);
 
     const ordersSnapshot = await query.get();
     const count = ordersSnapshot.size;
+
     res.status(200).json({ count });
   } catch (error) {
     console.error("Error counting orders:", error);
@@ -186,6 +180,8 @@ exports.orderpaymentdon = async (req, res) => {
       postcode,
       phone,
       ordernote,
+      paymentStatus:true,
+      orderstate:'pending',
       paymentAT: new Date().toISOString(),
     };
 
@@ -223,4 +219,50 @@ exports.orderpaymentdon = async (req, res) => {
 
     res.status(201).json({ message: orderUpdates });
 
-  };
+};
+
+exports.paymentdone=async(req,res)=>{
+  try {
+    const userId = req.user.id;
+    const userRef = db.collection("users").doc(userId);
+    const userDoc = await userRef.get();
+
+    if (!userDoc.exists) {
+      return res.status(404).send("User not found.");
+    }
+
+    const ordersSnapshot = await db
+      .collection("order")
+      .where("userId", "==", userId)
+      .where("paymentStatus", "==", true)
+      .get();
+
+    const cartList = ordersSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return { productId: data.productId, qty: data.qty, orderID: doc.id };
+    });
+
+    if (cartList.length === 0) {
+      return res.status(200).json([]);
+    }
+
+    const products = await Promise.all(
+      cartList.map(async ({ productId, qty, orderID }) => {
+        const productRef = db.collection("product").doc(productId);
+        const productDoc = await productRef.get();
+
+        if (productDoc.exists) {
+          return { id: productId, qty, orderID, ...productDoc.data() };
+        } else {
+          return null;
+        }
+      })
+    );
+
+    const filteredProducts = products.filter(Boolean);
+    res.status(200).json(filteredProducts);
+  } catch (error) {
+    console.error("Error retrieving cart list:", error);
+    res.status(500).send(`Error retrieving cart list: ${error.message}`);
+  }
+}

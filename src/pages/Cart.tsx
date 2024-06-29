@@ -100,6 +100,7 @@ export default function Cart() {
                 console.log("Billing Details:", billingDetails);
                 console.log("OrderIDs:", products);
 
+                navigate('/Userdashboard');
 
             } catch (error) {
                 console.error("Error placing order:", error);
