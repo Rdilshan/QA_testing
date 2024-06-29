@@ -48,7 +48,7 @@ exports.addtocartlistget = async (req, res) => {
 
     const cartList = ordersSnapshot.docs.map((doc) => {
       const data = doc.data();
-      return { productId: data.productId, qty: data.qty,orderID:doc.id };
+      return { productId: data.productId, qty: data.qty, orderID: doc.id };
     });
 
     if (cartList.length === 0) {
@@ -56,12 +56,12 @@ exports.addtocartlistget = async (req, res) => {
     }
 
     const products = await Promise.all(
-      cartList.map(async ({ productId, qty,orderID }) => {
+      cartList.map(async ({ productId, qty, orderID }) => {
         const productRef = db.collection("product").doc(productId);
         const productDoc = await productRef.get();
 
         if (productDoc.exists) {
-          return { id: productId, qty,orderID, ...productDoc.data() };
+          return { id: productId, qty, orderID, ...productDoc.data() };
         } else {
           return null;
         }
@@ -131,5 +131,25 @@ exports.deleteOrder = async (req, res) => {
   } catch (error) {
     console.error("Error deleting order:", error);
     res.status(500).send(`Error deleting order: ${error.message}`);
+  }
+};
+
+exports.countorder = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const userRef = db.collection("users").doc(userId);
+    const userDoc = await userRef.get();
+    if (!userDoc.exists) {
+      return res.status(404).send("User not found.");
+    }
+    const ordersSnapshot = await db
+      .collection("order")
+      .where("userId", "==", userId)
+      .get();
+    const count = ordersSnapshot.size;
+    res.status(200).json({ count });
+  } catch (error) {
+    console.error("Error counting orders:", error);
+    res.status(500).send(`Error counting orders: ${error.message}`);
   }
 };
