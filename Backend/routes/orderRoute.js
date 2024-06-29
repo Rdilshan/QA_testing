@@ -11,6 +11,9 @@ router.get('/count',userverifyToken, ordercontroller.countorder);
 router.post('/update',userverifyToken, ordercontroller.updateCartQty);
 router.post('/delete',userverifyToken, ordercontroller.deleteOrder);
 
+router.post('/place',userverifyToken, ordercontroller.orderpaymentdon);
+
+
 
 
 module.exports = router;

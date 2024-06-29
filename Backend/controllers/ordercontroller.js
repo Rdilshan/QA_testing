@@ -165,3 +165,62 @@ exports.countorder = async (req, res) => {
     res.status(500).send(`Error counting orders: ${error.message}`);
   }
 };
+
+
+exports.orderpaymentdon = async (req, res) => {
+  const { f_name, l_name, streetAddress1, streetAddress2, town, state, postcode, phone, ordernote, products } = req.body;
+
+
+    if (!f_name || !l_name || !streetAddress1 || !town || !postcode || !phone || !products) {
+      return res.status(400).json({ error: "Incomplete data. Please provide all required fields." });
+    }
+
+
+    const orderUpdates = {
+      firstName: f_name,
+      lastName: l_name,
+      streetAddress1,
+      streetAddress2: streetAddress2 || "", // Optional field
+      town,
+      state: state || "", // Optional field
+      postcode,
+      phone,
+      ordernote,
+      paymentAT: new Date().toISOString(),
+    };
+
+    await Promise.all(products.map(async (productId) => {
+     console.log(productId.orderID)
+     const orderSnapshot = await db.collection("order").doc(productId.orderID).get();
+      if (orderSnapshot.exists) {
+        const orderRef = db.collection("order").doc(productId.orderID);
+        await orderRef.update(orderUpdates);
+      }
+    }));
+
+
+    await Promise.all(products.map(async (productId) => {
+
+      const productRef = db.collection("product").doc(productId.id);
+      const productDoc = await productRef.get();
+    
+      if (productDoc.exists) {
+        const currentQuantity = productDoc.data().quantity;
+        const newQuantity = currentQuantity - productId.qty;
+    
+        await productRef.update({ quantity: newQuantity });
+    
+        console.log(`Updated quantity for product ${productId.id} to ${newQuantity}`);
+      } else {
+        console.error(`Product document have not`)
+      }
+
+      
+     }));
+
+
+
+
+    res.status(201).json({ message: orderUpdates });
+
+  };

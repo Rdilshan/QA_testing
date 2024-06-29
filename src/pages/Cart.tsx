@@ -82,12 +82,28 @@ export default function Cart() {
         setBillingDetails((prevDetails) => ({ ...prevDetails, [id]: value }));
     };
 
-    const handlePlaceOrder = (e: { preventDefault: () => void; }) => {
+    const handlePlaceOrder = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         if (isTermsChecked) {
+            try {
+                const token = localStorage.getItem('jwtTokenuser');
+                const response = await axios.post('http://localhost:3000/order/place', {
+                    ...billingDetails,
+                    products: products 
+                }, {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
 
-            console.log("Order placed successfully with details:", billingDetails);
-            console.log("Products:", products);
+                console.log("Order placed successfully with details:", response.data);
+                console.log("Billing Details:", billingDetails);
+                console.log("OrderIDs:", products);
+
+
+            } catch (error) {
+                console.error("Error placing order:", error);
+            }
         }
     };
 
