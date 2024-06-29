@@ -17,10 +17,10 @@ router.post('/delete',userverifyToken, ordercontroller.deleteOrder);
 router.post('/place',userverifyToken, ordercontroller.orderpaymentdon);
 router.get('/placeitem',userverifyToken, ordercontroller.paymentdone);
 router.get('/adminplaceitem',verifyToken, ordercontroller.paymentdoneadmin);
+router.post('/updateorderstaus',verifyToken, ordercontroller.updateorderstaus);
 
 
-
-
+router.get('/get/:id',ordercontroller.getoneorder);
 
 
 module.exports = router;

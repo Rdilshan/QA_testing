@@ -35,7 +35,7 @@ function App() {
           <Route path="Admin" element={< AdminDashboard/>} />
           <Route path="Adminlog" element={< Adminlogin/>} />
           <Route path="cartlist" element={< Cartlist/>} />
-          <Route path="adminorder" element={< Adminorderdetails/>} />
+          <Route path="adminorder/:id" element={< Adminorderdetails/>} />
 
 
         </Route>

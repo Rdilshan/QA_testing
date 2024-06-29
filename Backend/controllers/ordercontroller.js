@@ -305,3 +305,61 @@ exports.paymentdoneadmin =async(req,res)=>{
     res.status(500).send(`Error retrieving cart list: ${error.message}`);
   }
 }
+
+exports.getoneorder = async (req, res) => {
+  try {
+    const orderId = req.params.id;
+    const orderRef = db.collection("order").doc(orderId);
+    const orderDoc = await orderRef.get();
+
+    if (!orderDoc.exists) {
+      return res.status(404).send("Order not found.");
+    }
+
+    const orderData = orderDoc.data();
+
+    if (!orderData.productId) {
+      return res.status(404).send("Product ID not found in order.");
+    }
+
+    const productId = orderData.productId;
+    const productRef = db.collection("product").doc(productId);
+    const productDoc = await productRef.get();
+
+    if (!productDoc.exists) {
+      return res.status(404).send("Product not found for this order.");
+    }
+
+
+    const responseData = {
+      ...orderData,
+      product: productDoc.data()
+    };
+
+    res.status(200).json(responseData);
+  } catch (error) {
+    console.error("Error retrieving order:", error);
+    res.status(500).send(`Error retrieving order: ${error.message}`);
+  }
+};
+
+
+exports.updateorderstaus = async (req, res) => {
+  try {
+    const { orderid, orderstate } = req.body;
+
+    if (!orderid || !orderstate) {
+      return res.status(400).send("Order ID and order state are required.");
+    }
+
+    const orderRef = db.collection("order").doc(orderid);
+    await orderRef.update({
+      orderstate: orderstate
+    });
+
+    res.status(200).send("Order status updated successfully.");
+  } catch (error) {
+    console.error("Error updating order status:", error);
+    res.status(500).send(`Error updating order status: ${error.message}`);
+  }
+};

@@ -5,34 +5,9 @@ import Addnewproduct from '../../componment/Addnewproduct';
 import Adminproductshow from '../../componment/Adminproductshow';
 
 export default function adminDashboard() {
-    const [orders, setOrders] = useState([]);
+
     const navigate = useNavigate();
     const [orderlist, setorderlist] = useState([]);
-
-
-
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const token = localStorage.getItem('jwtToken');
-                const response = await axios.get('http://localhost:3000/product/getall', {
-                    headers: {
-                        'Authorization': token
-                    }
-                });
-                setOrders(response.data);
-                // console.log(orders)
-            } catch (error: any) {
-                if (error.response.data == "Invalid Token") {
-                    navigate('/Adminlog');
-                }
-                console.error('Error fetching orders:', error);
-
-            }
-        };
-
-        fetchOrders();
-    }, []);
 
 
     useEffect(() => {
@@ -132,7 +107,7 @@ export default function adminDashboard() {
                                                                             <td>{convertToNormalDate(order.paymentAT)}</td>
                                                                             <td>{order.orderstate}</td>
                                                                             <td>Rs {order.price * order.qty}</td>
-                                                                            <td><a href={`/view/${order.id}`} className="btn-add-to-cart">View</a></td>
+                                                                            <td><a href={`/adminorder/${order.orderID}`} className="btn-add-to-cart">View</a></td>
                                                                         </tr>
                                                                     ))
                                                                 ) : (
