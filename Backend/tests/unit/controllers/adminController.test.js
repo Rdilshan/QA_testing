@@ -1,12 +1,10 @@
-// tests/unit/controllers/adminController.test.js
 
-// Import necessary modules and functions
 const adminController = require('../../../controllers/admincontroller');
 const db = require('../../../config/firebaseConfig');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// Mocking dependencies
+
 jest.mock('../../../config/firebaseConfig'); // Mock Firebase config
 
 describe('AdminController', () => {
@@ -164,7 +162,7 @@ describe('AdminController', () => {
     expect(res.json).toHaveBeenCalledWith({ message: 'Internal server error' });
   });
   })
-  
+
 });
 
 
