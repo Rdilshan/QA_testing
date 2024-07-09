@@ -27,6 +27,7 @@ export default function Welcome() {
                 const productData = response.data;
 
                 setProducts(productData);
+                console.log(products)
             } catch (error: any) {
 
                 console.error('Error fetching products:', error);

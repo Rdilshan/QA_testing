@@ -1,11 +1,7 @@
 import Navbar from "../componment/Navbar";
 import Footer from "../componment/Footer";
 import { useState } from "react";
-import axios, { AxiosError } from "axios";
-
-
-
-
+import axios from "axios";
 
 export default function LoginReg() {
 
