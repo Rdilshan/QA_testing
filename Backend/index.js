@@ -24,7 +24,9 @@ const adminRoutes = require('./routes/adminRoute');
 const productRoute = require('./routes/productRoute');
 const orderRoute = require('./routes/orderRoute');
 
-
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
 app.use('/user', userRoutes); 
 app.use('/admin', adminRoutes); 
