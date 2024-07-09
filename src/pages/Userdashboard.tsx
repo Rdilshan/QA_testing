@@ -24,7 +24,7 @@ export default function Userdashboard() {
                         'Authorization': token
                     }
                 });
-                console.log(response.data)
+
                 setname(response.data.name)
                 setemail(response.data.email)
             } catch (error: any) {
@@ -84,6 +84,8 @@ export default function Userdashboard() {
                     'Authorization': token
                 }
             });
+
+            console.log(response)
             setCurrentPwd("")
             setNewPwd("")
             setConfirmPwd("")
