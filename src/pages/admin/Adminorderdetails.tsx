@@ -19,7 +19,7 @@ export default function Adminorderdetails() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/order/get/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/order/get/${id}`);
                 // console.log(response.data);
                 setproduct(response.data.product)
                 setdatas(response.data)
@@ -39,7 +39,7 @@ export default function Adminorderdetails() {
         try {
           const token = localStorage.getItem('jwtToken');
           const response = await axios.post(
-            'http://localhost:3000/order/updateorderstaus',
+            `${process.env.REACT_APP_API_BASE_URL}/order/updateorderstaus`,
             { orderid: id, orderstate },
             {
                 headers: {

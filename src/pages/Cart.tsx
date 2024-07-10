@@ -44,7 +44,7 @@ export default function Cart() {
         const fetchProducts = async () => {
             try {
                 const token = localStorage.getItem('jwtTokenuser');
-                const response = await axios.get('http://localhost:3000/order/get', {
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/order/get`, {
                     headers: {
                         'Authorization': token
                     }
@@ -87,7 +87,7 @@ export default function Cart() {
         if (isTermsChecked) {
             try {
                 const token = localStorage.getItem('jwtTokenuser');
-                const response = await axios.post('http://localhost:3000/order/place', {
+                const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/order/place`, {
                     ...billingDetails,
                     products: products 
                 }, {

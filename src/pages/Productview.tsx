@@ -28,7 +28,7 @@ export default function Productview() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/product/get/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/product/get/${id}`);
                 setProduct(response.data);
             } catch (error: any) {
                 console.error('Error fetching orders:', error);
@@ -52,7 +52,7 @@ export default function Productview() {
 
         try {
             const token = localStorage.getItem('jwtTokenuser');
-            const response = await axios.post('http://localhost:3000/user/whishlistadd', {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/user/whishlistadd`, {
                 productId
             }, {
                 headers: {
@@ -75,7 +75,7 @@ export default function Productview() {
 
         try {
             const token = localStorage.getItem('jwtTokenuser');
-            const response = await axios.post('http://localhost:3000/order/create',
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/order/create`,
                 {
                     productId,
                     qty
@@ -134,7 +134,7 @@ export default function Productview() {
                                                             <div key={index} className="owl-item" style={{ width: '446.025px' }}>
                                                                 <div className="single-thumb-item">
                                                                     <a href="single-product.html">
-                                                                        <img className="img-fluid" src={`http://localhost:3000/${image}`} alt={`Product Image ${index + 1}`} />
+                                                                        <img className="img-fluid" src={`${process.env.REACT_APP_API_BASE_URL}/${image}`} alt={`Product Image ${index + 1}`} />
                                                                     </a>
                                                                 </div>
                                                             </div>
@@ -156,7 +156,7 @@ export default function Productview() {
                                                 <div className="owl-thumbs">
                                                     {product.images.map((image, index) => (
                                                         <button key={index} className={`owl-thumb-item ${index === 0 ? 'active' : ''}`}>
-                                                            <img src={`http://localhost:3000/${image}`} alt={`Product Thumbnail ${index + 1}`} />
+                                                            <img src={`${process.env.REACT_APP_API_BASE_URL}/${image}`} alt={`Product Thumbnail ${index + 1}`} />
                                                         </button>
                                                     ))}
                                                 </div>

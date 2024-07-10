@@ -10,7 +10,7 @@ export default function Navbar() {
         const fetchProducts = async () => {
             try {
                 const token = localStorage.getItem('jwtTokenuser');
-                const response = await axios.get('http://localhost:3000/order/count', {
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/order/count`, {
                     headers: {
                         'Authorization': token
                     }

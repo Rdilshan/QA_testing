@@ -14,7 +14,7 @@ export default function adminDashboard() {
         const fechpaymentdone = async () => {
             try {
                 const token = localStorage.getItem('jwtToken');
-                const response = await axios.get('http://localhost:3000/order/adminplaceitem', {
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/order/adminplaceitem`, {
                     headers: {
                         'Authorization': token
                     }

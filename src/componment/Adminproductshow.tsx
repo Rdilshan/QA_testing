@@ -23,7 +23,7 @@ export default function Adminproductshow() {
         const fetchProducts = async () => {
             try {
                 const token = localStorage.getItem('jwtToken');
-                const response = await axios.get('http://localhost:3000/product/getproducts', {
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/product/getproducts`, {
                     headers: {
                         'Authorization': token,
                     },

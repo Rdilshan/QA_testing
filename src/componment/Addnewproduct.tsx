@@ -62,7 +62,7 @@ const ProductForm: React.FC = () => {
 
     try {
       const token = localStorage.getItem('jwtToken');
-      const response = await axios.post('http://localhost:3000/product/save', formDataToSend, {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/product/save`, formDataToSend, {
         headers: {
           'Authorization': token,
           'Content-Type': 'multipart/form-data' 

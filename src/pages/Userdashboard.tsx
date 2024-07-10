@@ -19,7 +19,7 @@ export default function Userdashboard() {
         const fetchOrders = async () => {
             try {
                 const token = localStorage.getItem('jwtTokenuser');
-                const response = await axios.get('http://localhost:3000/user/get', {
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/user/get`, {
                     headers: {
                         'Authorization': token
                     }
@@ -43,7 +43,7 @@ export default function Userdashboard() {
         const fechpaymentdone = async () => {
             try {
                 const token = localStorage.getItem('jwtTokenuser');
-                const response = await axios.get('http://localhost:3000/order/placeitem', {
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/order/placeitem`, {
                     headers: {
                         'Authorization': token
                     }
@@ -74,7 +74,7 @@ export default function Userdashboard() {
 
         try {
             const token = localStorage.getItem('jwtTokenuser');
-            const response = await axios.post('http://localhost:3000/user/update', {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/user/update`, {
                 name,
                 email,
                 currentPwd,

@@ -32,7 +32,7 @@ export default function Cartlist() {
         const fetchProducts = async () => {
             try {
                 const token = localStorage.getItem('jwtTokenuser');
-                const response = await axios.get('http://localhost:3000/order/get', {
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/order/get`, {
                     headers: {
                         'Authorization': token
                     }
@@ -59,7 +59,7 @@ export default function Cartlist() {
         if (confirmDelete) {
             try {
                 const token = localStorage.getItem('jwtTokenuser');
-                const response = await axios.post('http://localhost:3000/order/delete', { orderId }, {
+                const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/order/delete`, { orderId }, {
                     headers: {
                         'Authorization': token
                     }
@@ -78,7 +78,7 @@ export default function Cartlist() {
     const Updateqty = async (orderId: string, qty: number) => {
         try {
             const token = localStorage.getItem('jwtTokenuser');
-            const response = await axios.post('http://localhost:3000/order/update', { orderId, qty }, {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/order/update`, { orderId, qty }, {
                 headers: {
                     'Authorization': token
                 }
@@ -133,7 +133,7 @@ export default function Cartlist() {
                                             products.map((product, index) => (
                                                 <tr key={index}>
                                                     <td className="pro-thumbnail">
-                                                        <a href="#"><img className="img-fluid" src={`http://localhost:3000/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} /></a>
+                                                        <a href="#"><img className="img-fluid" src={`${process.env.REACT_APP_API_BASE_URL}/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} /></a>
                                                     </td>
                                                     <td className="pro-title"><a href="#">{product.title}</a></td>
                                                     <td className="pro-price"><span>Rs {product.price}</span></td>

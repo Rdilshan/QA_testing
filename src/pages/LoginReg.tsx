@@ -33,7 +33,7 @@ export default function LoginReg() {
                 return;
             }
 
-            const response = await axios.post('http://localhost:3000/user/register', {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/user/register`, {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,
@@ -63,7 +63,7 @@ export default function LoginReg() {
         e.preventDefault();
     
         try {
-          const response = await axios.post('http://localhost:3000/user/login', {
+          const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/user/login`, {
             email,
             password,
           });

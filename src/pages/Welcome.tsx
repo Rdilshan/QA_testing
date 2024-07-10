@@ -22,7 +22,7 @@ export default function Welcome() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('${process.env.REACT_APP_API_BASE_URL}/product/products');
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/product/products`);
                 const productData = response.data;
 
                 setProducts(productData);
