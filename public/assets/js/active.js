@@ -1,361 +1,349 @@
+/*global jQuery */
 (function ($) {
-  "use strict";
+    "use strict";
 
-  jQuery(document).ready(function ($) {
-    // Slider Carouse JS
-    var banner_owl = $("#banner-carousel");
-    banner_owl.owlCarousel({
-      items: 1,
-      loop: true,
-      nav: false,
-      dots: true,
-      smartSpeed: 1000,
-      autoplay: true,
-      autoplayTimeout: 3000,
-      autoplayHoverPause: true,
-    });
+    jQuery(document).ready(function ($) {
 
-    // Slider Caption Animation JS
-    var caption = $(".banner-caption *");
-    caption.addClass("animated");
+        // Slider Carouse JS
+        var banner_owl = $('#banner-carousel');
+        banner_owl.owlCarousel({
+            items: 1,
+            loop: true,
+            nav: false,
+            dots: true,
+            smartSpeed: 1000,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true
+        });
 
-    banner_owl.on("translate.owl.carousel", function (event) {
-      caption.removeClass("fadeInUp");
-      caption.addClass("hide");
-    });
 
-    banner_owl.on("translated.owl.carousel", function (event) {
-      caption.addClass("fadeInUp");
-      caption.removeClass("hide");
-    });
+        // Slider Caption Animation JS
+        var caption = $('.banner-caption *');
+        caption.addClass('animated');
 
-    // Product Carousel JS
-    $(".products-carousel").owlCarousel({
-      items: 3,
-      loop: true,
-      dots: false,
-      nav: false,
-      navText: [
-        '<i class="fa fa-angle-left"></i>',
-        '<i class="fa fa-angle-right"></i>',
-      ],
-      margin: 30,
-      responsive: {
-        // breakpoint from 0 up
-        0: {
-          items: 1,
-          autoplay: true,
-        },
-        // breakpoint from 576 up
-        576: {
-          items: 2,
-          autoplay: true,
-        },
-        // breakpoint from 768 up
-        768: {
-          items: 2,
-          nav: true,
-        },
-        // breakpoint from 992 up
-        992: {
-          items: 3,
-          nav: true,
-        },
-      },
-    });
+        banner_owl.on('translate.owl.carousel', function (event) {
+            caption.removeClass('fadeInUp');
+            caption.addClass('hide');
+        });
 
-    // New Product Carousel JS
-    $(".new-products-carousel").owlCarousel({
-      items: 4,
-      loop: true,
-      dots: false,
-      nav: false,
-      navText: [
-        '<i class="fa fa-angle-left"></i>',
-        '<i class="fa fa-angle-right"></i>',
-      ],
-      margin: 30,
-      responsive: {
-        // breakpoint from 0 up
-        0: {
-          items: 1,
-          margin: 0,
-          autoPlay: true,
-        },
-        // breakpoint from 576 up
-        576: {
-          items: 2,
-          autoPlay: true,
-        },
-        // breakpoint from 768 up
-        768: {
-          items: 2,
-          nav: true,
-        },
-        // breakpoint from 992 up
-        992: {
-          items: 3,
-          nav: true,
-        },
-        // breakpoint from 1200 up
-        1200: {
-          items: 4,
-          nav: true,
-        },
-      },
-    });
+        banner_owl.on('translated.owl.carousel', function (event) {
+            caption.addClass('fadeInUp');
+            caption.removeClass('hide');
+        });
 
-    // New Product Two Carousel JS
-    $(".new-products-carousel-two").owlCarousel({
-      items: 2,
-      dots: false,
-      nav: false,
-      navText: [
-        '<i class="fa fa-angle-left"></i>',
-        '<i class="fa fa-angle-right"></i>',
-      ],
-      margin: 30,
-      responsive: {
-        // breakpoint from 0 up
-        0: {
-          items: 1,
-          autoPlay: true,
-        },
-        // breakpoint from 576 up
-        576: {
-          items: 2,
-          autoPlay: true,
-        },
-        // breakpoint from 768 up
-        768: {
-          items: 2,
-          nav: true,
-        },
-        // breakpoint from 992 up
-        992: {
-          items: 2,
-          nav: true,
-        },
-      },
-    });
+        // Product Carousel JS
+        $('.products-carousel').owlCarousel({
+            items: 3,
+            loop: true,
+            dots: false,
+            nav: false,
+            navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+            margin: 30,
+            responsive: {
+                // breakpoint from 0 up
+                0: {
+                    items: 1,
+                    autoplay: true
+                },
+                // breakpoint from 576 up
+                576: {
+                    items: 2,
+                    autoplay: true
+                },
+                // breakpoint from 768 up
+                768: {
+                    items: 2,
+                    nav: true
+                },
+                // breakpoint from 992 up
+                992: {
+                    items: 3,
+                    nav: true
+                }
+            }
+        });
 
-    // New Product Gallery Carousel JS
-    $(".new-pro-gallery-carousel").owlCarousel({
-      items: 1,
-      loop: true,
-      dots: false,
-      nav: false,
-      autoPlay: true,
-    });
+        // New Product Carousel JS
+        $('.new-products-carousel').owlCarousel({
+            items: 4,
+            loop: true,
+            dots: false,
+            nav: false,
+            navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+            margin: 30,
+            responsive: {
+                // breakpoint from 0 up
+                0: {
+                    items: 1,
+                    margin: 0,
+                    autoPlay: true
+                },
+                // breakpoint from 576 up
+                576: {
+                    items: 2,
+                    autoPlay: true
+                },
+                // breakpoint from 768 up
+                768: {
+                    items: 2,
+                    nav: true
+                },
+                // breakpoint from 992 up
+                992: {
+                    items: 3,
+                    nav: true
+                },
+                // breakpoint from 1200 up
+                1200: {
+                    items: 4,
+                    nav: true
+                }
+            }
+        });
 
-    // Testimonial Carousel JS
-    $("#testimonialCarousel").owlCarousel({
-      items: 1,
-      loop: true,
-      dots: false,
-      nav: false,
-      autoPlay: true,
-    });
+        // New Product Two Carousel JS
+        $('.new-products-carousel-two').owlCarousel({
+            items: 2,
+            dots: false,
+            nav: false,
+            navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+            margin: 30,
+            responsive: {
+                // breakpoint from 0 up
+                0: {
+                    items: 1,
+                    autoPlay: true
+                },
+                // breakpoint from 576 up
+                576: {
+                    items: 2,
+                    autoPlay: true
+                },
+                // breakpoint from 768 up
+                768: {
+                    items: 2,
+                    nav: true
+                },
+                // breakpoint from 992 up
+                992: {
+                    items: 2,
+                    nav: true
+                }
+            }
+        });
 
-    // Image Gallery JS
-    $(".imgage-gallery-carousel").owlCarousel({
-      items: 4,
-      loop: true,
-      dots: false,
-      nav: false,
-      autoPlay: true,
-    });
+        // New Product Gallery Carousel JS
+        $('.new-pro-gallery-carousel').owlCarousel({
+            items: 1,
+            loop: true,
+            dots: false,
+            nav: false,
+            autoPlay: true
+        });
 
-    // Sale Product Carousel
-    $(".sale-product-carousel").owlCarousel({
-      items: 1,
-      loop: false,
-      dots: false,
-      smartSpeed: 500,
-      nav: true,
-      navText: [
-        '<i class="fa fa-angle-left"></i>',
-        '<i class="fa fa-angle-right"></i>',
-      ],
-    });
+        // Testimonial Carousel JS
+        $('#testimonialCarousel').owlCarousel({
+            items: 1,
+            loop: true,
+            dots: false,
+            nav: false,
+            autoPlay: true
+        });
 
-    // Home 4 Product Carousel
-    $(".products-categories-carousel").owlCarousel({
-      items: 1,
-      loop: true,
-      dots: false,
-      smartSpeed: 500,
-      nav: true,
-      navText: [
-        '<i class="fa fa-angle-left"></i>',
-        '<i class="fa fa-angle-right"></i>',
-      ],
-    });
+        // Image Gallery JS
+        $('.imgage-gallery-carousel').owlCarousel({
+            items: 4,
+            loop: true,
+            dots: false,
+            nav: false,
+            autoPlay: true
+        });
 
-    // Single Product  Carousel Js
-    $(".product-thumb-carousel").owlCarousel({
-      loop: true,
-      items: 1,
-      dots: false,
-      smartSpeed: 500,
-      nav: true,
-      navText: [
-        '<i class="fa fa-angle-left"></i>',
-        '<i class="fa fa-angle-right"></i>',
-      ],
-      thumbs: true,
-      thumbImage: true,
-      thumbContainerClass: "owl-thumbs",
-      thumbItemClass: "owl-thumb-item",
-    });
+        // Sale Product Carousel
+        $('.sale-product-carousel').owlCarousel({
+            items: 1,
+            loop: false,
+            dots: false,
+            smartSpeed: 500,
+            nav: true,
+            navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>']
+        });
 
-    // Bootstrap tooltip
-    $('[data-toggle="tooltip"]').tooltip({
-      container: "body",
-    });
+        // Home 4 Product Carousel
+        $('.products-categories-carousel').owlCarousel({
+            items: 1,
+            loop: true,
+            dots: false,
+            smartSpeed: 500,
+            nav: true,
+            navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>']
+        });
 
-    // Body Popup Modal
-    $(".modal-active").on("click", function () {
-      $(".body-popup-modal-area").fadeIn(200);
+        // Single Product  Carousel Js
+        $('.product-thumb-carousel').owlCarousel({
+            loop: true,
+            items: 1,
+            dots: false,
+            smartSpeed: 500,
+            nav: true,
+            navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+            thumbs: true,
+            thumbImage: true,
+            thumbContainerClass: 'owl-thumbs',
+            thumbItemClass: 'owl-thumb-item'
+        });
 
-      return false;
-    });
+        // Bootstrap tooltip
+        $('[data-toggle="tooltip"]').tooltip({
+            container: 'body'
+        });
 
-    $(".modal-close").on("click", function () {
-      $(".body-popup-modal-area").fadeOut();
+        // Body Popup Modal
+        $('.modal-active').on('click', function () {
+            $('.body-popup-modal-area').fadeIn(200);
 
-      return false;
-    });
+            return false;
+        });
 
-    $(".menu-open").on("click", function () {
-      $(".navigation-area-wrap").fadeIn(200);
+        $('.modal-close').on('click', function () {
+            $('.body-popup-modal-area').fadeOut();
 
-      return false;
-    });
+            return false;
+        });
 
-    $(".menu-close").on("click", function () {
-      $(".navigation-area-wrap").fadeOut();
+        $('.menu-open').on('click', function () {
+            $('.navigation-area-wrap').fadeIn(200);
 
-      return false;
-    });
+            return false;
+        });
 
-    // Responsive Slicknav
-    $("#mainmenu").slicknav({
-      label: "",
-      prependTo: "#header-area",
-      closedSymbol: "+",
-      openedSymbol: "-",
-    });
+        $('.menu-close').on('click', function () {
+            $('.navigation-area-wrap').fadeOut();
 
-    // Scroll to top
-    $(".scrolltotop").smoothScroll({
-      direction: "top",
-      scrollTarget: "html",
-      speed: 600,
-    });
+            return false;
+        });
 
-    // Nice Select Js
-    $("select").niceSelect();
+        // Responsive Slicknav
+        $('#mainmenu').slicknav({
+            label: '',
+            prependTo: '#header-area',
+            closedSymbol: '+',
+            openedSymbol: '-'
+        });
 
-    // Product View Style JS
-    var view_style_wrap = $(".shop-page-products-wrap > .products-wrapper");
+        // Scroll to top
+        $('.scrolltotop').smoothScroll({
+            direction: 'top',
+            scrollTarget: 'html',
+            speed: 600
+        });
 
-    $(".product-view li.column-gird").on("click", function () {
-      view_style_wrap.removeClass("products-gird products-list-view");
-    });
+        // Nice Select Js
+        $('select').niceSelect();
 
-    $(".product-view li.box-gird").on("click", function () {
-      view_style_wrap.addClass("products-gird");
-      view_style_wrap.removeClass("products-list-view");
-    });
+        // Product View Style JS
+        var view_style_wrap = $('.shop-page-products-wrap > .products-wrapper');
 
-    $(".product-view li.list").on("click", function () {
-      view_style_wrap.addClass("products-list-view");
-      view_style_wrap.removeClass("products-gird");
-    });
+        $('.product-view li.column-gird').on('click', function () {
+            view_style_wrap.removeClass('products-gird products-list-view');
+        });
 
-    $(".product-view li").on("click", function () {
-      $(".product-view li").removeClass("current");
-      $(this).addClass("current");
-    });
+        $('.product-view li.box-gird').on('click', function () {
+            view_style_wrap.addClass('products-gird');
+            view_style_wrap.removeClass('products-list-view');
+        });
 
-    // Checkout Page Checkbox
-    $("#create_pwd").on("change", function () {
-      $(".account-create").slideToggle("100");
-    });
+        $('.product-view li.list').on('click', function () {
+            view_style_wrap.addClass('products-list-view');
+            view_style_wrap.removeClass('products-gird');
+        });
 
-    $("#ship_to_different").on("change", function () {
-      $(".ship-to-different").slideToggle("100");
-    });
+        $('.product-view li').on('click', function () {
+            $('.product-view li').removeClass('current');
+            $(this).addClass('current');
+        });
 
-    // Payment Method Accordion
-    $('input[name="paymentmethod"]').on("click", function () {
-      var $value = $(this).attr("value");
+        // Checkout Page Checkbox
+        $("#create_pwd").on("change", function () {
+            $(".account-create").slideToggle("100");
+        });
 
-      $(".payment-method-details").slideUp();
-      $('[data-method="' + $value + '"]').slideDown();
-    });
+        $("#ship_to_different").on("change", function () {
+            $(".ship-to-different").slideToggle("100");
+        });
 
-    // Sale Products Countdown
-    $(".sale-product-countdown").each(function (index, element) {
-      var $element = $(element),
-        $date = $element.data("date");
+        // Payment Method Accordion
+        $('input[name="paymentmethod"]').on('click', function () {
 
-      $element.countdown($date, function (event) {
-        var $this = $(this).html(
-          event.strftime(
-            "" +
-              '<div class="counter-item"><span class="counter-no">%D</span><span class="counter-label">Days</span></div>' +
-              '<div class="counter-item"><span class="counter-no">%H</span><span class="counter-label">Hours</span></div>' +
-              '<div class="counter-item"><span class="counter-no">%M</span><span class="counter-label">Mins</span></div>' +
-              '<div class="counter-item"><span class="counter-no">%S</span><span class="counter-label">Secs</span></div>'
-          )
-        );
-      });
-    });
+            var $value = $(this).attr('value');
 
-    //Email Ajax Submission
-    $("#subscribe-form").submit(function () {
-      var action = $(this).attr("action"),
-        result = $("#result");
+            $('.payment-method-details').slideUp();
+            $('[data-method="' + $value + '"]').slideDown();
+        });
 
-      $.ajax({
-        url: action,
-        type: "POST",
-        data: {
-          email: $("#address").attr("value"),
-        },
-        success: function (data) {
-          result.html(data);
-          result.removeClass("alert alert-danger");
-          result.addClass("alert alert-success");
-        },
-        error: function () {
-          result.html("Sorry, an error occurred.");
-          result.removeClass("alert alert-success");
-          result.addClass("alert alert-danger");
-        },
-      });
-      return false;
-    });
 
-    // All Window Scroll Function
-    $(window).scroll(function () {
-      //Scroll top Hide Show
-      if ($(window).scrollTop() >= 400) {
-        $(".scrolltotop").addClass("show");
-      } else {
-        $(".scrolltotop").removeClass("show");
-      }
+        // Sale Products Countdown
+        $(".sale-product-countdown").each(function (index, element) {
+            var $element = $(element),
+                $date = $element.data('date');
 
-      //Header Fix JS
-      if ($(window).scrollTop() >= 400) {
-        $("#header-area").addClass("fixed");
-      } else {
-        $("#header-area, .slicknav_menu").removeClass("fixed");
-      }
-    });
-  }); //Ready Function End
+            $element.countdown($date, function (event) {
+                var $this = $(this).html(event.strftime(''
 
-  jQuery(window).on("load", function () {}); //window load End
-})(jQuery);
+                    + '<div class="counter-item"><span class="counter-no">%D</span><span class="counter-label">Days</span></div>'
+                    + '<div class="counter-item"><span class="counter-no">%H</span><span class="counter-label">Hours</span></div>'
+                    + '<div class="counter-item"><span class="counter-no">%M</span><span class="counter-label">Mins</span></div>'
+                    + '<div class="counter-item"><span class="counter-no">%S</span><span class="counter-label">Secs</span></div>'));
+            });
+        });
+
+
+        //Email Ajax Submission
+        $('#subscribe-form').submit(function () {
+            var action = $(this).attr('action'),
+                result = $('#result');
+
+            $.ajax({
+                url: action,
+                type: 'POST',
+                data: {
+                    email: $('#address').attr('value')
+                },
+                success: function (data) {
+                    result.html(data);
+                    result.removeClass('alert alert-danger');
+                    result.addClass('alert alert-success');
+                },
+                error: function () {
+                    result.html('Sorry, an error occurred.');
+                    result.removeClass('alert alert-success');
+                    result.addClass('alert alert-danger');
+                }
+            });
+            return false;
+        });
+
+        // All Window Scroll Function
+        $(window).scroll(function () {
+            //Scroll top Hide Show
+            if ($(window).scrollTop() >= 400) {
+                $('.scrolltotop').addClass('show');
+            } else {
+                $('.scrolltotop').removeClass('show');
+            }
+
+            //Header Fix JS
+            if ($(window).scrollTop() >= 400) {
+                $('#header-area').addClass('fixed');
+            } else {
+                $('#header-area, .slicknav_menu').removeClass('fixed');
+            }
+        });
+
+    }); //Ready Function End
+
+    jQuery(window).on('load', function () {
+
+    }); //window load End
+}(jQuery));
