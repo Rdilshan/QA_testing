@@ -70,7 +70,7 @@ export default function Product() {
 
                     <div className="single-product-item text-center">
                         <figure className="product-thumb">
-                            <a href={`/view/${product.id}`}><img src={`http://localhost:3000/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} className="img-fluid" /></a>
+                            <a href={`/view/${product.id}`}><img src={`${process.env.REACT_APP_API_BASE_URL}/${product.images[0]}`} alt={`Product Thumbnail ${index + 1}`} className="img-fluid" /></a>
                         </figure>
 
                         <div className="product-details">
