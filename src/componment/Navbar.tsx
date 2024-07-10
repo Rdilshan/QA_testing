@@ -37,7 +37,7 @@ export default function Navbar() {
 
                         <div className="col-3 col-lg-1 col-xl-2 m-auto">
                             <a href="index.html" className="logo-area">
-                                <img src="http://localhost:5173/src/assets/img/logo.png" alt="Logo" className="img-fluid" />
+                                <img src="assets/img/logo.png" alt="Logo" className="img-fluid" />
                             </a>
                         </div>
 

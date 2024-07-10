@@ -41,7 +41,7 @@ export default function Welcome() {
             <Navbar />
 
             <div className="body-popup-modal-area">
-                <span className="modal-close"><img src="src/assets/img/cancel.png" alt="Close" className="img-fluid" /></span>
+                <span className="modal-close"><img src="assets/img/cancel.png" alt="Close" className="img-fluid" /></span>
                 <div className="modal-container d-flex">
                     <div className="search-box-area">
                         <div className="search-box-form">
@@ -92,7 +92,7 @@ export default function Welcome() {
                         <div className="col-lg-6">
 
                             <div className="about-image-wrap">
-                                <a href="about.html"><img src="src/assets/img/about-img.png" alt="About Us" className="img-fluid" /></a>
+                                <a href="about.html"><img src="assets/img/about-img.png" alt="About Us" className="img-fluid" /></a>
                             </div>
 
                         </div>
@@ -167,7 +167,7 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/product-1.jpg"
+                                                        <a href="/view"><img src="assets/img/product-1.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
@@ -205,7 +205,7 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/new-product-1.jpg"
+                                                        <a href="/view"><img src="assets/img/new-product-1.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
@@ -235,7 +235,7 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/new-product-2.jpg"
+                                                        <a href="/view"><img src="assets/img/new-product-2.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
@@ -265,7 +265,7 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/new-product-3.jpg"
+                                                        <a href="/view"><img src="assets/img/new-product-3.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
@@ -295,7 +295,7 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/new-product-4.jpg"
+                                                        <a href="/view"><img src="assets/img/new-product-4.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
@@ -331,7 +331,7 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/sale-product-1.jpg"
+                                                        <a href="/view"><img src="assets/img/sale-product-1.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
@@ -361,7 +361,7 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/sale-product-2.jpg"
+                                                        <a href="/view"><img src="assets/img/sale-product-2.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
@@ -391,7 +391,7 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/product-3.jpg"
+                                                        <a href="/view"><img src="assets/img/product-3.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
@@ -421,7 +421,7 @@ export default function Welcome() {
 
                                                 <div className="single-product-item text-center">
                                                     <figure className="product-thumb">
-                                                        <a href="/view"><img src="src/assets/img/new-product-4.jpg"
+                                                        <a href="/view"><img src="assets/img/new-product-4.jpg"
                                                             alt="Products" className="img-fluid" /></a>
                                                     </figure>
 
@@ -480,7 +480,7 @@ export default function Welcome() {
 
                                     <div className="single-product-item text-center">
                                         <figure className="product-thumb">
-                                            <a href="/Shop"><img src="src/assets/img/new-product-1.jpg" alt="Products"
+                                            <a href="/Shop"><img src="assets/img/new-product-1.jpg" alt="Products"
                                                 className="img-fluid" /></a>
                                         </figure>
 
