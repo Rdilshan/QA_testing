@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
@@ -31,4 +31,4 @@ app.use('/admin', adminRoutes);
 app.use('/product', productRoute); 
 app.use('/order', orderRoute); 
 
-
+module.exports = { app, server };
