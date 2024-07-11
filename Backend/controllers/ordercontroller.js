@@ -27,7 +27,7 @@ exports.orderplace = async (req, res) => {
     const docRef = await db.collection("order").add(order);
     res.status(200).send(`Order placed successfully with ID: ${docRef.id}`);
   } catch (error) {
-    console.error("Error placing order:", error);
+    console.log("Error placing order:", error);
     res.status(500).send(`Error placing order: ${error.message}`);
   }
 };

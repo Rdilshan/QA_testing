@@ -32,7 +32,7 @@ exports.login = async (req, res) => {
 
         res.status(200).json({ token });
     } catch (error) {
-        console.error('Error during login:', error);
+        console.log('Error during login:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -60,7 +60,7 @@ exports.register = async (req, res) => {
         
         res.status(200).send(`Document written with ID: ${docRef.id}`);
     } catch (error) {
-        console.error('Error during register:', error);
+        console.log('Error during register:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
