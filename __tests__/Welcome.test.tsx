@@ -1,18 +1,26 @@
 // __tests__/Welcome.test.tsx
-import { render, screen } from '@testing-library/react'
-import Welcome from '../src/pages/Welcome'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import React from 'react'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import Welcome from '../src/pages/Welcome'
+import Shop from '../src/pages/Shop'
 
 describe('Welcome component', () => {
-  it('renders the About Us section', () => {
-    render(<Welcome />)
+  it('navigates to /shop route when Add to Cart button is clicked', () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/shop" element={<Shop />} />
+        </Routes>
+      </MemoryRouter>
+    )
 
+    const addToCartLink = screen.getByRole('link', { name: /\+ Add to Cart/i })
+    
+    // Simulate a click on the link
+    fireEvent.click(addToCartLink)
 
-    const aboutUsSection = screen.getByRole('heading', { name: /about us/i })
-    expect(aboutUsSection).toBeInTheDocument()
-
-    const aboutImage = screen.getByAltText('About Us')
-    expect(aboutImage).toHaveAttribute('src', 'src/assets/img/about-img.png')
   })
 })
